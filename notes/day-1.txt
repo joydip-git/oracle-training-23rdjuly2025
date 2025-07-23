@@ -1,0 +1,6 @@
+products
+	id
+	name
+	price
+	description
+	released_on

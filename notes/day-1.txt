@@ -1,6 +1,22 @@
-products
-	id
-	name
-	price
-	description
-	released_on
+PL/SQL: Procedural Language/Structured Query Language
+
+SQL => 
+	interact with data in a RDBMS
+	it is not designed for complex programming
+	declarative -> what data you want and SQL will figure out how to get that data
+
+PL/SQL =>
+	imperative -> allows you to define "how" to get data and how to manipulate it.
+
+1. PL/SQL engine compiles your PL/SQl code into bytecode and executes the executable code. 
+2. Once you submit a PL/SQL block to the Oracle Db Server, the PL/SQL engine then collaborates with the SQL engine and execute the code
+3. PL/SQL engine runs the procedural elements while the SQl engine processes the SQl statements
+	
+PL/SQL block
+	a. declaration section -> declare variables
+	b. executable section -> starts with 'BEGIN' and ends with 'END'
+	c. exception-handling section
+
+a. anonymous 
+b. named 
+	

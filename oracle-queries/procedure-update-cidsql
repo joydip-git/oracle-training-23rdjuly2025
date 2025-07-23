@@ -1,0 +1,13 @@
+create or replace procedure update_category_id(
+cid in products.category_id%type,
+pid in products.product_id%type
+)
+is
+begin
+  update products set category_id=cid where product_id=pid;
+end;
+
+--calling procedure
+--execute update_category_id(1,100);
+--execute update_category_id(2,101);
+--execute update_category_id(3,102);

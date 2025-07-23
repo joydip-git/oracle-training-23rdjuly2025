@@ -1,0 +1,15 @@
+set serveroutput on;
+DECLARE
+    pro_id products.product_id%TYPE;
+    cat_id products.category_id%TYPE;
+BEGIN
+    pro_id :=100;
+    cat_id :=1;
+    IF pro_id>=100 AND pro_id<=102 THEN
+        update_category_id(cat_id,pro_id);
+        dbms_output.put_line('done...');
+    else
+        dbms_output.put_line('pro_id should within range');
+    end if;
+END;
+    

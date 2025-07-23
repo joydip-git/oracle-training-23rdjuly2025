@@ -1,0 +1,11 @@
+set SERVEROUTPUT on;
+DECLARE
+    --l_message varchar2(255) := 'welcome to pl-sql';
+    v_result NUMBER;
+BEGIN
+    -- dbms_output.put_line(l_message);
+    v_result := 10/0;
+    EXCEPTION
+        WHEN ZERO_DIVIDE THEN
+            dbms_output.put_line(SQLERRM);
+END;

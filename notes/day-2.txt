@@ -115,7 +115,10 @@ addresses:
 	id, door_no, street_name, city, state, postal_code, country
 
 customers:
-	customer_name, customer_id, mobile no, email id, alternate contact no
+	customer_name, customer_id, 
+
+contacts:
+	mobile no, email id, alternate contact no
 products:
 	
 categories:

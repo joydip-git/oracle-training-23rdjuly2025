@@ -25,4 +25,16 @@ begin
   dbms_output.put_line(r_prod_cat_info.productname || r_prod_cat_info.price);
 end;
 
+--TYPE address is record(
+--    door_no varchar(10),
+--    city datatype,
+--    ...
+--)
+--type detils is record(
+--    customername ,
+--    ship_add address,
+--    bill_add address,
+--    mobile_no
+--)
+
   

@@ -142,51 +142,32 @@ Note: you can create multiple user-defined records and nest one user-defined rec
 task:
 display a customer's billing address and shipping address along with customer name and primary mobile no for a particular order
 
+ref cursor:
+a. strongly typed
+b. weakly typed
 
-class Address{
-}
-class ContactDetail{
-}
-class Customer{
-	private Address shipping_address;
-	private Address billing_address; 
-	private ContactDetail contactInfo; 	
-}
+DECLARE
+--strongly typed cursor
+    type c_product is ref cursor return products%rowtype;
+    c_product_row c_product;
 
-class Category{
-	int categoryId;
-	string categoryName;
-}
-class Product{
-	string productName;
-	int categoryId;
-	//navigation/association attribute
-	Category categoryInfo;
-}
-
-Category bookCategory = new(1,"book");
-Product p = new ();
-//p.categoryId=6;
-p.categoryInfo = bookCategory;
-
-s.o.p(p.categoryIfno.categoryId)
+-- weak cursor
+   type c_product_weak is ref cursor;
+   c_product_row_weak c_product_weak;
+   
+-- since Oracl 9i (weak cursor)
+    c_product_row_weak_1 SYS_REFCURSOR;
+BEGIN
+    null;
+END;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    select p.product_name, p.product_price, c.category_name 
+    into r_prod_cat_info
+    from products p 
+    join categories c 
+    on p.category_id=c.category_id
+    order by p.product_name;
 
 
 

@@ -1,0 +1,198 @@
+PL/SQL:
+	data types
+		a. scalar: single value
+		b. composite: multiple values
+
+Scalar data types:
+	a. Number
+	b. Boolean
+	c. Character
+	d. Datetime
+
+a. Number:
+i. NUMBER, BINARY_FLOAT and BINARY_DOUBLE -> SQL data types
+ii. PLS_INTEGER (32 bit integers) -> PL/SQL data type EQUIVALENT TO BINARY_INTEGER)
+	It follows hardware arithmetic
+	faster than NUMBER options (uses s/w arithmetic)
+	this requires less storage than NUMBER
+	sub-types:
+		I. NATURAL: NON-NEGATIVE PLS_INTEGER
+		II. NATURALN: NON-NEGATIVE PLS_INTEGER WITH NON NULL CONSTRAINT
+		III. POSITIVE: POSITIVE PLS_INTEGER
+		IV. POSITIVEN: POSITIVE PLS_INTEGER WITH NON NULL CONSTRAINT
+		V. SIGNTYPE: REPRESENTS 3 VALUES: -1, 0, 1
+		VI. SIMPLE_INTEGER: PLS_INTEGER WITH NON NULL CONSTRAINT
+
+b. Boolean:
+	a. TRUE
+	b. FALSE
+	c. NULL
+
+Note: SQL does not have boolean data type, hence BOOLEAN is PL/SQL data type
+	1. can't assign a boolean value to a data column
+	2. can't select the value from a table column into a boolean variable
+	3. can't use boolean value in SQL function 
+	4. can't have a boolean expression in SQL statement
+	5. can't use a boolean value in dbms_output.put_line/put subprograms
+
+c. character:
+represents an alphanumeric text
+PL/SQL uses the SQL character data types:
+	a. CHAR
+	b. VARCHAR2
+	c. LONG
+	d. RAW
+	....
+
+	CHAR(n) -> fixed-length character type (1 to 32,767 bytes) -> max size: 200 bytes
+	VARCHAR2(n) -> varying length character type (1 to 32,767 bytes) -> max size: 4000 bytes
+
+d. datetime
+	a. DATE
+	B. TIMESTAMP
+	...
+
+
+Synonymous: 
+
+	DEC, DECIMAL, DOUBLE PRECISION, FLOAT, INTEGER, INT, NUMERIC, REAL, SMALLINT -> NUMBER
+	CHARACTER, STRING -> CHAR
+	VARCHAR -> VARCHAR2
+	
+Declare variable:
+	variable_name datatype [NOT NULL] [:= initial_value];
+
+	example:
+	l_product_price decimal(18,2) :=0;
+	=== 
+	l_product_price decimal(18,2) DEFAULT 0;
+
+constant variable:
+	constant_var_name CONSTANT datatype [NOT NULL] := <value>;
+
+comments:
+	single-line: --
+	multiline: /* */
+
+
+contrlo flow statements:
+	
+	a. IF
+	b. CASE
+	c. GOTO
+	d. NULL statement
+		i. IF THEN
+		ii. IF THEN ELSE
+		iii. IF THEN ELSIF
+
+	IF condition THEN
+		statements;
+	
+	END IF;
+
+	
+	IF condition THEN
+		statments;
+	ELSE
+		else_statements;
+	END IF;
+
+
+	IF condition THEN
+
+
+Composite data types:
+	Record:
+		when creating records based on existing structure
+		a. table-basesd
+		b. cursor based
+
+		create a record whose structure is not based on existing ones
+		c. user-defined
+
+
+addresses:
+	id, door_no, street_name, city, state, postal_code, country
+
+customers:
+	customer_name, customer_id, mobile no, email id, alternate contact no
+products:
+	
+categories:
+	
+orders:
+	order_id, customer_id, shipping_add, billing_add, order_date, amount
+	
+
+
+relationship: 
+	one customer can have many addresses, one address belongs to one customer 
+	one customer can have one contact detail and one contact belongs to one customer
+
+create a record in PL/SQL to store information for address with following information: 
+	- customer name
+	- billing address
+	- shipping address
+	- contact detail
+Note: you can create multiple user-defined records and nest one user-defined record inside other
+
+task:
+display a customer's billing address and shipping address along with customer name and primary mobile no for a particular order
+
+
+class Address{
+}
+class ContactDetail{
+}
+class Customer{
+	private Address shipping_address;
+	private Address billing_address; 
+	private ContactDetail contactInfo; 	
+}
+
+class Category{
+	int categoryId;
+	string categoryName;
+}
+class Product{
+	string productName;
+	int categoryId;
+	//navigation/association attribute
+	Category categoryInfo;
+}
+
+Category bookCategory = new(1,"book");
+Product p = new ();
+//p.categoryId=6;
+p.categoryInfo = bookCategory;
+
+s.o.p(p.categoryIfno.categoryId)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+create tables employees:
+	columns:
+		employee_id (pk)
+		manager_id (fk)
+		first_name
+		last_name
+		email
+
+create a function to return a cursor (strongly typed cursor) referring a result set with all employees (fullname, email) that work under a given manager ( manager id)
+

@@ -1,0 +1,45 @@
+create categories table
+	columns:
+		category_id (pk)
+		category_name
+
+create products table
+	columns:
+		product_id (pk)
+		product_name
+		product_price
+		product_desc
+		product_released_on
+		category_id (fk) -> categories 
+
+create cutsomers table
+	columns:
+		customer_id (pk)
+		customer_name
+		mobile_no
+
+create order_details table
+	columns: 
+		order_id (pk)
+		customer_id (fk) -> customers
+		status (any value from these two - shipped/packed/cancelled)
+		order_date
+
+
+create order_items table:
+	columns:
+		order_id (fk) -> orders
+		product_id (fk)	 -> products
+		quantity
+		order_amount
+
+
+generate a function which will be used to return total sales for a given month for 'shipped' items
+	
+
+
+
+
+
+
+

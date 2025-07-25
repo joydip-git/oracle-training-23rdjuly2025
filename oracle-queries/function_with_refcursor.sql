@@ -1,0 +1,35 @@
+--create or replace function get_products
+--return type c_product_result is ref cursor products%rowtype
+--as
+--    c_product_records c_product_result;
+--begin
+--    open c_product_records for select * from products;
+--    return c_product_records;
+--end;
+
+--create or replace function get_products
+--return SYS_REFCURSOR
+--as
+----    type c_products is ref cursor;
+----    c_product_records c_product;
+--    c_product_records SYS_REFCURSOR;
+--begin
+--    open c_product_records for select * from products;
+--    return c_product_records;
+--end;
+set serveroutput on;
+declare
+    c_result SYS_REFCURSOR;
+    l_product_row products%rowtype;
+begin
+    c_result := get_products();
+        
+    LOOP
+        FETCH c_result INTO l_product_row;
+        EXIT WHEN c_result%notfound;
+        
+        dbms_output.put_line(l_product_row.product_name);
+    END LOOP;
+    
+    close c_result;
+end;

@@ -7,6 +7,7 @@
 --    return l_count;
 --end;
 
+set serveroutput on;
 declare
 --    l_count_result number;
 begin

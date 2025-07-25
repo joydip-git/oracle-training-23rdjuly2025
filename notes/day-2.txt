@@ -1,7 +1,7 @@
 PL/SQL:
 	data types
 		a. scalar: single value
-		b. composite: multiple values
+		b. composite: multiple values (record, collections - array)
 
 Scalar data types:
 	a. Number

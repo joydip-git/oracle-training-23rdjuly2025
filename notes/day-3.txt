@@ -1,0 +1,74 @@
+cusror: pointer or reference to a context memmory where a query result set is stored.
+
+	a. implicit: select into, insert, update and delete statements automatically create cusror which is managed by the oracle itself
+	b. explicit
+	
+	cursor <name> is <query>
+
+ref cursor -> used in case of storing a cursor as returned by a function or created by a procedure
+	type <type-name> is ref cursor [return return-type];
+
+	a. strong	
+	type <type-name> is ref cursor return return-type;
+	var-name <type-name>;	
+
+	b. weak
+	type <type-name> is ref cursor;
+	var-name <type-name>;
+
+	or
+	var_name SYS_REFCURSOR; (Oracle 9i towards)
+
+
+1. open the cursor
+	var-name.open(); 
+	note: in case of for loop to read the result set using the cursor you dont need to open the cursor
+2. use the cursor to read through the records
+3. close the cursor
+	var-name.close(); 
+	note: in case of anonymous block, stored procedure and function you dont need to close the cursor as it gest closed by default. you need to close the cursor in case of a package-based cursor.
+
+
+
+1. functions
+2. functions with ref cursor
+3. procedures
+4. triggers
+5. index
+6. view
+
+
+functions:
+------------------
+is a reusable code block that can perform a specific task and returns a single value
+syntax:
+
+create (or replace) function <name>(
+	param1 [IN/OUT/INOUT] datatype,
+	param2 [IN/OUT/INOUT] datatype,
+	....
+) return <return_type>
+is
+	--variable declaration
+begin
+	
+end;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

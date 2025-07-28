@@ -17,10 +17,11 @@ public class UiUtility {
 	
 	public static char decideToContinue(Scanner scanner) {
 		System.out.println("\nWould you like to continue[y/Y/n/N]? ");
-		char ch = scanner.next().charAt(0);
+		Character ch = scanner.next().charAt(0);
 		if (Character.isUpperCase(ch))
 			ch = Character.toLowerCase(ch);
 
+		//return ch.charValue();
 		return ch;
 	}
 }

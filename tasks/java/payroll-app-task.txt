@@ -1,0 +1,29 @@
+developer
+    attributes
+	- name, id, basic, da, hra, incentive, totalpay
+    constructors
+	- default and parametrized
+    getters and setters 
+	- for data members (read-only or write-only or read-write)
+    methods:
+	- calculateSalary
+		args: NA
+		rt: void
+hr
+    attributes
+	- name, id, basic, da, hra, gratuity, totalpay
+    constructors
+	- default and parametrized
+    getters and setters 
+	- for data members (read-only or write-only or read-write)
+    methods:
+	- calculateSalary
+		args: NA
+		rt: void
+
+UI:
+	create an instance of each
+	ask user for data
+	display the total pay along with the name of the employee	
+
+

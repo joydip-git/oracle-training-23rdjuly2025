@@ -40,6 +40,46 @@ BusinessLogic
 App (UI layer)
 	- 
 
+int	-> Integer
+char	-> Character -> isUpperCase,...
+bool	-> Boolean
+
+
+char x = 'a';
+A ob = null;
+
+Class
+Object
+
+Class class in Java:
+-----------------------
+It is used to store metadata (extracted from byte code) of some type
+how to get metadata of a type
+a. TypeName.class
+ex: PersonInfo.class
+
+
+b. through the object of the type
+reference-var-of-class.getClass()
+
+Static members in Java:
+---------------------------
+static data member
+static method
+static block
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

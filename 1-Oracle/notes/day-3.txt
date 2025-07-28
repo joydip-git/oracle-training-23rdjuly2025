@@ -51,8 +51,42 @@ create (or replace) function <name>(
 is
 	--variable declaration
 begin
-	
+	--execution block	
 end;
+
+triggers:
+---------------------
+	after or before trigger
+	row level or statement level trigger
+	insert trigger, update or delete trigger	
+
+	refer the old row -> :OLD (execution block)
+	refer the old row -> :OLD (execution block)
+
+name	total_order
+abcd	3000
+mnop	4000
+xyz	0
+
+order_id	customer_id	order_amount
+1			1	1000
+2			1	2000
+3			2	1500
+4			2	2500
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,50 @@
+Java:
+
+source code ->[javac -> java compiler]-> byte code (.class file)
+
+byte code -> JIT compiler [JRE -> JVM]-> machine language code -> executed
+
+main(){
+	add(12,13);
+	add(12,13);
+}
+
+1. Add
+2. Sub
+3. multi
+4. div
+
+enter choice[1,2]: 1
+enter value: 12
+enter value: 13
+calling Add method: 25
+Would you like to continue?[y/Y/n/N]:y
+
+SOLID principles:
+	S -> Single Responsibility
+	O -> Open and Close
+	L -> Liskov substitution
+	I -> Interface Segregation
+	D -> Dependency Inversion (Injection)
+
+DataAccess
+	- getAll()
+	- get(int id)
+	- insert()
+	- update()
+	- delete()
+
+BusinessLogic
+	- fetchAll()
+
+App (UI layer)
+	- 
+
+
+
+
+
+
+
+
+

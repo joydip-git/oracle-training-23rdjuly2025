@@ -68,6 +68,49 @@ static data member
 static method
 static block
 
+base class: 
+	Employee
+		attributes:
+		name, id, basic, da, hra, totalpay
+
+		constructors
+		default and parametrized
+
+		getters and setters
+
+		methods:
+			calculateSalary -> basic+da+hra
+
+child classes:
+developer:
+    attributes
+	- inherited members, incentive
+    constructors
+	- default and parametrized
+    getters and setters 
+	- for data members (read-only or write-only or read-write)
+    methods:
+	- calculateSalary
+		args: NA
+		rt: void
+
+polymorphism:
+   compile-time:
+	method:
+		no of parameters
+		data type of parameters
+		order of the parameters
+	operator:
+		operand data type
+   dynamic/runttime:
+	
+		
+
+
+
+
+		
+
 
 
 

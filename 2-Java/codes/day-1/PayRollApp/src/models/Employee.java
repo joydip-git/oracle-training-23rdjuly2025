@@ -7,7 +7,7 @@ public class Employee {
 	private float daPayment;
 	private float hraPayment;
 	private float totalPayment;
-
+	
 	public Employee() {
 	}
 
@@ -58,12 +58,17 @@ public class Employee {
 	public float getTotalPayment() {
 		return totalPayment;
 	}
+
 	protected void setTotalPayment(float value) {
-		totalPayment= value;
+		totalPayment = value;
 	}
 
 	public void calculateSalary() {
 		totalPayment = basicPayment + daPayment + hraPayment;
 	}
 
+	@Override
+	public String toString() {
+		return "Salary of " + name + " is " + totalPayment;
+	}
 }

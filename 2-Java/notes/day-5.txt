@@ -30,6 +30,18 @@ class B extends A, implements IA, IB{
 }
 
 
+one file -> one class/interface
+create packages to segregate the types (models, data access layer, business layer, user interface, api layer etc.)
+no public data member until and unless constant
+always keep default and parameterized constructors in the class
+always create getter and/or setter (depending on whether the data should be read-only or not) to expose private/protected data member value without revealing the data member itself
+no input/output line in the class code, until and unless it is an UI class
+names of class/interface in pascal-casing
+class/interface name should be a noun
+name of methods in camel-casing (except constructor)
+method name should be a verb
+name of data members in camel-casing (except constant)
+data member name should be like an adjective/noun
 
 
 

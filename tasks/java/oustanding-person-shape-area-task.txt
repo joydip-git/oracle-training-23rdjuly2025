@@ -1,0 +1,33 @@
+Student	->
+	name, marks
+	isOutstanding() -> bool
+
+Professor ->
+	name, books published
+	isOutstanding() -> bool
+
+main method
+	-> how many records? 4
+	-> choice 1. Student 2. Professor
+	-> save the references in an array
+	-> iterate through the array and find out which of the instances is/are outstanding. print the name and marks/books published of ONLY the outstanding people
+
+
+
+
+Circle ->
+	radius
+	calculateArea() -> calculated area
+
+
+Triangle ->
+	base
+	height
+	calculateArea() -> calculated area
+
+main method
+	-> how many shapes? 2
+	-> choice 1. Circle 2. Triangle
+	-> save the references in an array
+	-> iterate through the array and calculate area of each.
+	-> print the area of each shape

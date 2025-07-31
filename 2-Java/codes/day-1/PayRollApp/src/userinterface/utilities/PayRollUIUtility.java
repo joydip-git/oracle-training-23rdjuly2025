@@ -91,7 +91,8 @@ public class PayRollUIUtility {
 			printMenu();
 			int choice = getChoice();
 			printRecordHeader(i, choice);
-			employees.add(createEmployee(choice));
+			Employee e = createEmployee(choice);
+			employees.add(e);
 		}
 	}
 

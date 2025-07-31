@@ -25,7 +25,7 @@ public class App {
 			return z;
 		} catch (ArithmeticException e) {
 			throw e;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			throw e;
 		}
 	}
@@ -39,6 +39,9 @@ public class App {
 			application.setName("anil");
 			application.setDateOfBirth(LocalDate.parse("2010-12-03"));
 			result = Divide();
+		} catch (AgeLessThanEighteenException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ArithmeticException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

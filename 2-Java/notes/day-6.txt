@@ -4,13 +4,19 @@ try{
 	//code
 }catch(Exception ex){
 	//handle
+}finally{
+	//code
 }
 
+
+Exception Hierarchy:
+------------------------------------
 Throwable
 	Exception		
 	Error
 
-Exception:
+Exception types:
+----------------------
 	Checked 
 		- IOException
 		- SQLException
@@ -23,4 +29,49 @@ Exception:
 Error
 	- OutOfMemoryError 
 	- StackOverflowError
+
+Exception Handling Best Practices:
+---------------------------------------------
+1. put only suspected amount of code in try block
+2. try to declare the variables outside try...catch..finally block so that they can be used in any one of them
+3. catch exception using specific exception class
+4. as a fallback always keep a catch block with super class Exception, but that catch should be the last one in multiple catch blocks
+5. finally block should be used to execute the code that MUST be executed irrespective of the exception (such as for closing database or file connection, which you opened in try block to fetch data)
+6. exceptions should be printed ONLY in UI/presentation layer. in every other case just throw the exception back to the caller
+7. for checked exceptions, use throws keyword with method declaration where the checked exception might occur or wrap the code in try...catch block and use throw keyword to throw the exception
+
+
+Generic concept:
+---------------------------
+E -> Element
+K -> Key
+V -> Value
+
+Collections:
+---------------------
+List
+Set
+Map
+
+Comparator<E>
+<E> int compare(E o1, E o2)
+-> 0 : both are equal
+-> >0 : first is greater than the second
+-> <0 : first is lesser than the second
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	

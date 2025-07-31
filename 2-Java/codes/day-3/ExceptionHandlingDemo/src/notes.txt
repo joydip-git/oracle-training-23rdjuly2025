@@ -1,0 +1,14 @@
+int x = 10;
+		int y = 0;
+		int z = 0;
+		try {
+			z = x / y;
+			System.out.println(z == 0 ? "NA in try" : z);
+		} catch (ArithmeticException e) {
+			System.out.println("Error Message: " + e.getMessage());
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println(z == 0 ? "NA" : z);
+		}

@@ -1,0 +1,26 @@
+exception hanlding:
+
+try{
+	//code
+}catch(Exception ex){
+	//handle
+}
+
+Throwable
+	Exception		
+	Error
+
+Exception:
+	Checked 
+		- IOException
+		- SQLException
+		- ClassNotFoundException
+	Unchecked
+		- ArrayIndexOutOfBoundsException
+		- ArithmeticException
+		- NullPointerException
+
+Error
+	- OutOfMemoryError 
+	- StackOverflowError
+	

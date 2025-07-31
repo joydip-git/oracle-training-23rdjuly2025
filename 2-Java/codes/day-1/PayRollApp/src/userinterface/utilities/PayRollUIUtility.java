@@ -1,5 +1,6 @@
 package userinterface.utilities;
 
+import java.util.List;
 import java.util.Scanner;
 
 import models.Developer;
@@ -13,7 +14,7 @@ public class PayRollUIUtility {
 		scanner = new Scanner(System.in);
 	}
 
-	public static int getRecordCount() {
+	private static int getRecordCount() {
 		System.out.print("how many records? ");
 		return scanner.nextInt();
 	}
@@ -80,22 +81,38 @@ public class PayRollUIUtility {
 		}
 		if (employee != null)
 			employee.calculateSalary();
-		
+
 		return employee;
 	}
 
-	public static void saveEmployees(Employee[] employees) {
-		for (int i = 0; i < employees.length; i++) {
+	public static void saveEmployees(List<Employee> employees) {
+		int count = getRecordCount();
+		for (int i = 0; i < count; i++) {
 			printMenu();
 			int choice = getChoice();
 			printRecordHeader(i, choice);
-			employees[i] = createEmployee(choice);
+			employees.add(createEmployee(choice));
 		}
 	}
 
-	public static void printEmployees(Employee[] employees) {
+	public static void printEmployees(List<Employee> employees) {
 		for (Employee employee : employees) {
 			System.out.println(employee.toString());
 		}
+	}
+
+	private static void printSortChoices() {
+		System.out.println("\n1. sort by id\n2. sort by name\n3. sort by total payment");
+	}
+
+	private static int getSortChoice() {
+		System.out.print("enter choice[1/2/3]: ");
+		return scanner.nextInt();
+	}
+
+	public static void sortEmployees(List<Employee> employees) {
+		printSortChoices();
+		int choice = getSortChoice();
+		employees.sort(new EmployeeComparator(choice));
 	}
 }

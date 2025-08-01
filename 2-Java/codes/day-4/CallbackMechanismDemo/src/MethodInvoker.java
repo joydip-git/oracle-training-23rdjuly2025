@@ -3,8 +3,9 @@
 //Functional Interface or Single Abstract Method (SAM) interface
 
 @FunctionalInterface
-public interface MethodInvoker {
-	void call(String name);
+public interface MethodInvoker<T> {
+	//void call(String name);
+	void call(T data);
 
 	// without implementing the interface
 //	class Implementation{

@@ -1,3 +1,6 @@
+Functional Programming:
+-------------------------------------
+
 Callback Mechanism:
 -------------------------
 passing a method as an argument to another method and calling the former from the later.
@@ -13,6 +16,43 @@ calling the method using that reference
 
 
 create an interface with a method whose signature (return type and arguments - number, data type and position/order) is same as that of the method to be called using method reference. name of the method and name of the arguments of the method of both the method to be called and the method in the interface need NOT be same.
+
+Note: the interface MUST have exactly ONE abstract method. this type of interface is known as Functional Interface and annotated with @FunctionalInterface (not mandatory). it is also known as Single Abstract Method (SAM) interface.
+
+Lambda Expression:syntactical way of creating annonymous inner type (inner class in the functional interface) and creating a method with same signatire as that of the interface method (with or without implementing the interface).
+Another way to say, Lamnda expression is way of writing an anonymous method 
+
+Built-in functional interfaces:
+--------------------------------------
+BiConsumer<T,U>
+It represents an operation that accepts two input arguments and returns no result.
+
+Consumer<T>
+It represents an operation that accepts a single argument and returns no result.
+
+Function<T,R>
+It represents a function that accepts one argument and returns a result.
+
+Predicate<T>
+It represents a predicate (boolean-valued function) of one argument.
+
+BiFunction<T,U,R>
+It represents a function that accepts two arguments and returns a a result.
+
+BinaryOperator<T>
+It represents an operation upon two operands of the same data type. It returns a result of the same type as the operands.
+
+BiPredicate<T,U>
+It represents a predicate (boolean-valued function) of two arguments.
+
+
+interface Predicate<T>{
+	boolean test(T value);
+}
+
+
+
+
 
 
 

@@ -59,7 +59,7 @@ public class App {
 
 		// using built-in functional interface (Predicate<T>)
 		Function<Integer, Boolean> greaterLogic = (num) -> num > 4;
-		List<Integer> greaterResult = filter(numbers, oddLogic);
+		List<Integer> greaterResult = filter(numbers, greaterLogic);
 		for (Integer num : greaterResult) {
 			System.out.println(num);
 		}

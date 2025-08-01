@@ -51,8 +51,68 @@ interface Predicate<T>{
 }
 
 
-Stream API:
---------------------
+JDBC: (Java DataBase Connectivity)
+-----------------------------------------
+JDBC APIs
+	a. interfaces
+		Driver interface
+		Connection interface
+		Statement interface
+		PreparedStatement interface
+		CallableStatement interface
+		ResultSet interface
+		ResultSetMetaData interface
+		DatabaseMetaData interface
+		RowSet interface
+
+	b. classes
+		DriverManager class
+		Blob class
+		Clob class
+		Types class
+
+Drivers:
+---------------
+a. JDBC-ODBC bridge driver
+b. Native-API driver (partially java driver)
+c. Network Protocol driver (fully java driver)
+d. Thin driver (fully java driver)
+
+steps:
+-----------
+a. Register the Driver class
+b. Create connection
+c. Create statement
+d. Execute queries
+e. Close connection
+
+
+a. register the driver class:
+---------------------------------
+ Class.forName("oracle.jdbc.driver.OracleDriver");  
+
+b. create connection:
+-----------------------------
+Connection connection =
+DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","uname","pwd")
+
+c. create statement:
+-------------------------
+Statement statement = con.createStatement();
+
+d. execute the query:
+-------------------------
+ResultSet result = statement.executeQuery("query");
+
+while(result.next()){  
+	System.out.println(result.getInt(1)+" "+result.getString(2));  
+} 
+
+e. close the connection:
+---------------------------
+connection.close();
+
+
 
 
 

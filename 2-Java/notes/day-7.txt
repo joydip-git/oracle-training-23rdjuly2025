@@ -1,0 +1,20 @@
+Callback Mechanism:
+-------------------------
+passing a method as an argument to another method and calling the former from the later.
+
+Java:
+-------------
+passing a reference to a method to another method calling the first from the second using the reference to the method.
+
+Method Reference:
+--------------------------
+reference to a method
+calling the method using that reference
+
+
+create an interface with a method whose signature (return type and arguments - number, data type and position/order) is same as that of the method to be called using method reference. name of the method and name of the arguments of the method of both the method to be called and the method in the interface need NOT be same.
+
+
+
+
+

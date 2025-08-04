@@ -51,23 +51,17 @@ public class ProductDao {
 	public int delete(int id) throws ClassNotFoundException, SQLException, Exception {
 		Connection connection = null;
 		CallableStatement statement = null;
-		String query = "{call update_product(?,?,?,?,?,?,?)}";
+		String query = "{call delete_product(?,?)}";
 		int result = 0;
 		try {
 			connection = DaoUtility.createConnection();
-			statement = connection.prepareCall(query);
-
-			statement.setInt(6, product.getCategoryId());
-			statement.setInt(1, product.getId());
-			statement.setString(2, product.getName());
-			statement.setString(4, product.getDescription());
-			statement.setFloat(3, product.getPrice());
-			statement.setDate(5, Date.valueOf(product.getReleasedOn()));
-			statement.registerOutParameter(7, Types.INTEGER);
+			statement = connection.prepareCall(query);			
+			statement.setInt(1, id);
+			statement.registerOutParameter(2, Types.INTEGER);
 
 			statement.executeUpdate();
 
-			result = statement.getInt(7);
+			result = statement.getInt(2);
 		} catch (ClassNotFoundException e) {
 			throw e;
 		} catch (SQLException e) {

@@ -76,7 +76,6 @@ public class App {
 			int id = scanner.nextInt();
 
 			if (id > 0) {
-
 				dao = new ProductDao();
 				int result = dao.delete(id);
 				if (result > 0) {

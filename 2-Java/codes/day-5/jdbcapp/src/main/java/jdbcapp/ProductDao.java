@@ -31,9 +31,9 @@ public class ProductDao {
 			statement.setString(3, product.getDescription());
 			statement.setFloat(4, product.getPrice());
 			statement.setDate(5, Date.valueOf(product.getReleasedOn()));
-			
+
 			statement.registerOutParameter(7, Types.INTEGER);
-			//result = statement.executeUpdate();
+			// result = statement.executeUpdate();
 			statement.executeUpdate();
 			result = statement.getInt(7);
 		} catch (ClassNotFoundException e) {
@@ -43,6 +43,9 @@ public class ProductDao {
 		} catch (Exception e) {
 			throw e;
 		} finally {
+			if (statement != null)
+				statement.close();
+
 			DaoUtility.closeConnection(connection);
 		}
 		return result;
@@ -55,7 +58,7 @@ public class ProductDao {
 		int result = 0;
 		try {
 			connection = DaoUtility.createConnection();
-			statement = connection.prepareCall(query);			
+			statement = connection.prepareCall(query);
 			statement.setInt(1, id);
 			statement.registerOutParameter(2, Types.INTEGER);
 
@@ -69,12 +72,13 @@ public class ProductDao {
 		} catch (Exception e) {
 			throw e;
 		} finally {
+			if (statement != null)
+				statement.close();
 			DaoUtility.closeConnection(connection);
 		}
 		return result;
 	}
 
-	
 	public int update(ProductDTO product) throws ClassNotFoundException, SQLException, Exception {
 		Connection connection = null;
 		CallableStatement statement = null;
@@ -102,6 +106,8 @@ public class ProductDao {
 		} catch (Exception e) {
 			throw e;
 		} finally {
+			if (statement != null)
+				statement.close();
 			DaoUtility.closeConnection(connection);
 		}
 		return result;
@@ -139,6 +145,8 @@ public class ProductDao {
 		} catch (Exception e) {
 			throw e;
 		} finally {
+			if (statement != null)
+				statement.close();
 			DaoUtility.closeConnection(connection);
 		}
 		return products;
@@ -172,6 +180,8 @@ public class ProductDao {
 		} catch (Exception e) {
 			throw e;
 		} finally {
+			if (statement != null)
+				statement.close();
 			DaoUtility.closeConnection(connection);
 		}
 		return product;

@@ -113,6 +113,22 @@ e. close the connection:
 connection.close();
 
 
+Statement
+	- query without parameters
+	- mainly for SQL select queries
+
+PreparedStatement
+	- query with parameters
+	- select, insert, update, delete etc.
+
+CallableStatement
+	- mainly for executing stored procedures and functions
+	- stored procedure/function with parameters
+
+Statement methods to execute query/procedure/function
+	- executeQuery() -> mainly SQL select queries returning multiple values
+	- executeUpdate() -> mainly SQL queries other than select returning a single value	
+	- execute()
 
 
 

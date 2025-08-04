@@ -1,5 +1,6 @@
 package jdbcapp;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDao {
-	
+
 	public int add(ProductDTO product) throws ClassNotFoundException, SQLException, Exception {
 		Connection connection = null;
 		PreparedStatement statement = null;
@@ -19,15 +20,47 @@ public class ProductDao {
 		try {
 			connection = DaoUtility.createConnection();
 			statement = connection.prepareStatement(query);
-			
+
 			statement.setInt(6, product.getCategoryId());
 			statement.setInt(2, product.getId());
 			statement.setString(1, product.getName());
 			statement.setString(3, product.getDescription());
 			statement.setFloat(4, product.getPrice());
-			statement.setDate(5, Date.valueOf(product.getReleasedOn()));	
+			statement.setDate(5, Date.valueOf(product.getReleasedOn()));
 
 			result = statement.executeUpdate();
+		} catch (ClassNotFoundException e) {
+			throw e;
+		} catch (SQLException e) {
+			throw e;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			DaoUtility.closeConnection(connection);
+		}
+		return result;
+	}
+
+	public int update(ProductDTO product) throws ClassNotFoundException, SQLException, Exception {
+		Connection connection = null;
+		CallableStatement statement = null;
+		String query = "{call update_product(?,?,?,?,?,?,?)}";
+		int result = 0;
+		try {
+			connection = DaoUtility.createConnection();
+			statement = connection.prepareCall(query);
+
+			statement.setInt(6, product.getCategoryId());
+			statement.setInt(1, product.getId());
+			statement.setString(2, product.getName());
+			statement.setString(4, product.getDescription());
+			statement.setFloat(3, product.getPrice());
+			statement.setDate(5, Date.valueOf(product.getReleasedOn()));
+			statement.registerOutParameter(7, java.sql.Types.INTEGER);
+
+			statement.executeUpdate();
+
+			result = statement.getInt(7);
 		} catch (ClassNotFoundException e) {
 			throw e;
 		} catch (SQLException e) {
@@ -109,6 +142,5 @@ public class ProductDao {
 		}
 		return product;
 	}
-	
-	
+
 }

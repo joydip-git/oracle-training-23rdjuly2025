@@ -1,0 +1,11 @@
+"select * from products where product_id=?"
+"insert into products(product_id,product_name) values(?,?,?,?,?,?,?)"
+
+	properties file:
+		*.properties
+	key-value pairs
+
+	Properties collection class (specialized)
+	 - to read data from *.properties file and load that data into an instance of Properties  class.	
+	you can then read data from the Properties object
+

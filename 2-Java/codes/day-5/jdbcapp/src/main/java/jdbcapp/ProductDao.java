@@ -9,17 +9,21 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Types;
 
 public class ProductDao {
 
 	public int add(ProductDTO product) throws ClassNotFoundException, SQLException, Exception {
 		Connection connection = null;
-		PreparedStatement statement = null;
-		String query = "insert into products(product_name, product_id, product_desc, product_price, product_released_on,category_id) values(?,?,?,?,?,?)";
+		CallableStatement statement = null;
+//		PreparedStatement statement = null;
+//		String query = "insert into products(product_name, product_id, product_desc, product_price, product_released_on,category_id) values(?,?,?,?,?,?)";
+		String query = "{call add_product(?,?,?,?,?,?,?)}";
 		int result = 0;
 		try {
 			connection = DaoUtility.createConnection();
-			statement = connection.prepareStatement(query);
+//			statement = connection.prepareStatement(query);
+			statement = connection.prepareCall(query);
 
 			statement.setInt(6, product.getCategoryId());
 			statement.setInt(2, product.getId());
@@ -27,8 +31,11 @@ public class ProductDao {
 			statement.setString(3, product.getDescription());
 			statement.setFloat(4, product.getPrice());
 			statement.setDate(5, Date.valueOf(product.getReleasedOn()));
-
-			result = statement.executeUpdate();
+			
+			statement.registerOutParameter(7, Types.INTEGER);
+			//result = statement.executeUpdate();
+			statement.executeUpdate();
+			result = statement.getInt(7);
 		} catch (ClassNotFoundException e) {
 			throw e;
 		} catch (SQLException e) {
@@ -41,6 +48,39 @@ public class ProductDao {
 		return result;
 	}
 
+	public int delete(int id) throws ClassNotFoundException, SQLException, Exception {
+		Connection connection = null;
+		CallableStatement statement = null;
+		String query = "{call update_product(?,?,?,?,?,?,?)}";
+		int result = 0;
+		try {
+			connection = DaoUtility.createConnection();
+			statement = connection.prepareCall(query);
+
+			statement.setInt(6, product.getCategoryId());
+			statement.setInt(1, product.getId());
+			statement.setString(2, product.getName());
+			statement.setString(4, product.getDescription());
+			statement.setFloat(3, product.getPrice());
+			statement.setDate(5, Date.valueOf(product.getReleasedOn()));
+			statement.registerOutParameter(7, Types.INTEGER);
+
+			statement.executeUpdate();
+
+			result = statement.getInt(7);
+		} catch (ClassNotFoundException e) {
+			throw e;
+		} catch (SQLException e) {
+			throw e;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			DaoUtility.closeConnection(connection);
+		}
+		return result;
+	}
+
+	
 	public int update(ProductDTO product) throws ClassNotFoundException, SQLException, Exception {
 		Connection connection = null;
 		CallableStatement statement = null;
@@ -56,7 +96,7 @@ public class ProductDao {
 			statement.setString(4, product.getDescription());
 			statement.setFloat(3, product.getPrice());
 			statement.setDate(5, Date.valueOf(product.getReleasedOn()));
-			statement.registerOutParameter(7, java.sql.Types.INTEGER);
+			statement.registerOutParameter(7, Types.INTEGER);
 
 			statement.executeUpdate();
 

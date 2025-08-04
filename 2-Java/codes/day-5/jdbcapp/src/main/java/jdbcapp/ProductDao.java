@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ProductDao {
 	
-	public int add(ProductDTO product) throws ClassNotFoundException, SQLException {
+	public int add(ProductDTO product) throws ClassNotFoundException, SQLException, Exception {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		String query = "insert into products(product_name, product_id, product_desc, product_price, product_released_on,category_id) values(?,?,?,?,?,?)";
@@ -40,7 +40,7 @@ public class ProductDao {
 		return result;
 	}
 
-	public List<ProductDTO> getAll() throws SQLException, ClassNotFoundException {
+	public List<ProductDTO> getAll() throws SQLException, ClassNotFoundException, Exception {
 		Connection connection = null;
 		Statement statement = null;
 		ResultSet result = null;
@@ -77,7 +77,7 @@ public class ProductDao {
 		return products;
 	}
 
-	public ProductDTO get(int id) throws SQLException, ClassNotFoundException {
+	public ProductDTO get(int id) throws SQLException, ClassNotFoundException, Exception {
 		Connection connection = null;
 		String query = "select * from products where product_id=?";
 		PreparedStatement statement = null;
@@ -109,4 +109,6 @@ public class ProductDao {
 		}
 		return product;
 	}
+	
+	
 }

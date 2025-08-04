@@ -16,13 +16,17 @@ public class DaoUtility {
 	}
 
 	private static void loadDbConfiguration() throws FileNotFoundException, Exception {
+		FileReader reader = null;
 		try {
-			FileReader reader = new FileReader("src//main//resources//db.properties");
+			reader = new FileReader("src//main//resources//db.properties");
 			dbProperties.load(reader);
 		} catch (FileNotFoundException e) {
 			throw e;
 		} catch (Exception e) {
 			throw e;
+		} finally {
+			if (reader != null)
+				reader.close();
 		}
 	}
 

@@ -11,14 +11,15 @@ public class App {
 	public static void main(String[] args) {
 		ApplicationContext container = null;
 		try {
-			//container will get the configuration metadata of beans from the 
-			//given XML file
+			// container will get the configuration metadata of beans from the
+			// given XML file
 			container = new ClassPathXmlApplicationContext("beans.xml");
-			Employee emp = (Employee) container.getBean("employeeBean");
+//			Employee emp = (Employee) container.getBean("employeeBean");
+			Employee emp = container.getBean("setterEmployeeBean", Employee.class);
 			System.out.println(emp.getAddress().getCityName());
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			container = null;
 		}
 	}

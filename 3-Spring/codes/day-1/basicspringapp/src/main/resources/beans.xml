@@ -16,9 +16,36 @@
 		</constructor-arg>
 	</bean>
 
+	<!-- <bean id="employeeBean" class="com.oracle.basicspringapp.Employee"> 
+		<constructor-arg name="address" index="1"> <ref bean="addressBean" /> </constructor-arg> 
+		<constructor-arg type="String" name="name" index="0"> <value>Joydip</value> 
+		</constructor-arg> </bean> -->
 	<bean id="employeeBean" class="com.oracle.basicspringapp.Employee">
-		<constructor-arg name="address" index="0">
-			<ref bean="addressBean"/>
+		<constructor-arg>
+			<value>Joydip</value>
 		</constructor-arg>
+		<constructor-arg>
+			<ref bean="addressBean" />
+		</constructor-arg>
+	</bean>
+
+	<bean id="setterAddressBean"
+		class="com.oracle.basicspringapp.Address">
+		<property name="doorNo">
+			<value>202</value>
+		</property>
+		<property name="areaName">
+			<value>ECity</value>
+		</property>
+		<property name="cityName" value="Bangalore">
+		</property>
+	</bean>
+	<bean id="setterEmployeeBean" class="com.oracle.basicspringapp.Employee">
+		<property name="name">
+			<value>Joydip</value>
+		</property>
+		<property name="address">
+			<ref bean="setterAddressBean" />
+		</property>
 	</bean>
 </beans>

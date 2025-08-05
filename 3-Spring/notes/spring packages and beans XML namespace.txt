@@ -28,3 +28,12 @@ beans XML namespaces:
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 		https://www.springframework.org/schema/beans/spring-beans.xsd">
 </beans>
+
+group id (website in reverse): com.oracle 
+artifact id (project name): di_list_of_values
+
+package nane: com.oracle.di_list_of_values
+
+
+
+

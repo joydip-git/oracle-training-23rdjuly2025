@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="firstStudentBean"
+		class="com.oracle.di_list_of_values.Student">
+		<property name="id" value="1"></property>
+		<property name="name" value="anil"></property>
+	</bean>
+
+	<bean id="secondStudentBean"
+		class="com.oracle.di_list_of_values.Student">
+		<property name="id" value="2"></property>
+		<property name="name" value="sunil"></property>
+	</bean>
+
+	<!--  <bean id="studentListBean"
+		class="com.oracle.di_list_of_values.StudentList">
+		<constructor-arg name="students"
+			type="java.util.List">
+			<list value-type="com.oracle.di_list_of_values.Student">
+				<ref bean="firstStudentBean" />
+				<ref bean="secondStudentBean" />
+			</list>
+		</constructor-arg>
+	</bean> -->
+	<bean id="studentListBean"
+		class="com.oracle.di_list_of_values.StudentList">
+		<property name="students">
+			<list value-type="com.oracle.di_list_of_values.Student">
+				<ref bean="firstStudentBean" />
+				<ref bean="secondStudentBean" />
+			</list>
+		</property>
+	</bean>
+</beans>
+
+
+
+

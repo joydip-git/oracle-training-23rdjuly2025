@@ -1,0 +1,62 @@
+Spring
+Hibernate (OR/M tool)
+RESTful services:
+	Web Service (JAX-WS)
+	REST Service (JAX-RS)
+	SpringBoot (framework/tool)
+	Helidon (Oracle's own product to create RESTful service)
+
+
+Dependency Injection:
+---------------------------
+App class depends on DataManager instance
+DataManager depends on DbDataReader instance
+
+these are the dependencies in our application
+currently our code is very "tightly-coupled", since we are creating instance of a "depndency" (DbDataReader, DataManager) in the "dependent" (DataManager, App)
+	- change in the name of class will affect every dependent
+	- change in architecture will affect every depdendent
+	etc.
+
+goal is to make our code "loosely-coupled"
+	- rely on abstraction rather than concrete implementation
+
+Dependency Injection/Inversion: If any class is dependent on another class (dependency), creating instance of the dependency (DataReader type - FileDataReader or DbDataReader) and supplying it to the instance of dependent (DataManager) via constructor, method or setter.
+Interface is the abstraction we need, rather a concrete implementation.
+
+a. in case of DI of some class (Dependency) instance into other class (Dependent) instance, the dependency (DbDataReader/FileDataReader) MUST implement an interface (expose their functionality via an interface as contract)
+
+b. the dependent class (DataManager) must declare/have a data member of type abstract type (abstract class/interface - DataReader). should NOT have any data member of actual classes (concrete class/implementation - FileDataReader/DbDataReader).
+
+c. the dependent class (DataManager) must provide a parameterized constructor with an argument of type abstract type (abstract class/interface - DataReader) for DI through constructor.
+
+supply the instance of the dependency (DataReader type) instance to the instance of dependent party (DataManager) via constructor while creating the instance of dependent party.
+     IB	  IC   ID
+A -> B -> C -> D
+
+manual DI resolution:
+--------------------------
+new A(new B(new C(new D())));
+
+automatic resolution:
+---------------------------
+in your app, you need DI framework, and that framework to resolve dependencies in the app and then create instance of dependencies and supply them to the dependents 
+
+
+Spring Framework:
+----------------------------
+developed by Mr. Rod Johnson in 2003
+lightweight framework
+framework of frameworks (Struts, hibernate, springboot, EJB, JSF etc.)
+provides solution for lots of technical problems that we face while developing our application.
+
+
+
+
+
+
+
+
+
+
+

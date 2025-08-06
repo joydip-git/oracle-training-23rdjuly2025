@@ -43,7 +43,7 @@ RestEasy
 Aapche CXF
 SpringBoot
 
-url: http://localhost:<port-no>/<app-name>/webapi/<uri>
+url: http://localhost:8082/productserviceapi/webapi/products
 
 
 

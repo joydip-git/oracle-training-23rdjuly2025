@@ -37,3 +37,11 @@
     <artifactId>jersey-media-json-binding</artifactId>
     <version>3.1.0</version>
 </dependency>
+
+6. in case of httpServlet issue:
+<dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
+  </dependency>

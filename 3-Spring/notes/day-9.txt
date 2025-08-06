@@ -111,10 +111,3 @@ Employee instance is dependent on Address instance
 Spring IoC container, while creating an instance of an Employee, will figure out that it has a dependency on Address type. So, Spring IoC will create instance of Address and then will supply to Employee instance.
 
 
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-		https://www.springframework.org/schema/beans/spring-beans.xsd">
-</beans>
-
-

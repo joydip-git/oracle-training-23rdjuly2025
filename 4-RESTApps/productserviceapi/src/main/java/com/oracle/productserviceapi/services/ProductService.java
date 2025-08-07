@@ -8,6 +8,7 @@ import jakarta.ws.rs.Path;
 
 @Path("products")
 public class ProductService {
+	
 	public List<ProductDTO> getProducts(){
 		try {
 			

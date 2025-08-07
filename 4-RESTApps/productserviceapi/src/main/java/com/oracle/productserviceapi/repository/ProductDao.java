@@ -14,18 +14,15 @@ import com.oracle.productserviceapi.models.ProductDTO;
 
 import java.sql.Types;
 
-public class ProductDao {
+public class ProductDao implements DaoContract<ProductDTO, Integer>{
 
 	public int add(ProductDTO product) throws ClassNotFoundException, SQLException, Exception {
 		Connection connection = null;
 		CallableStatement statement = null;
-//		PreparedStatement statement = null;
-//		String query = "insert into products(product_name, product_id, product_desc, product_price, product_released_on,category_id) values(?,?,?,?,?,?)";
 		String query = "{call add_product(?,?,?,?,?,?,?)}";
 		int result = 0;
 		try {
 			connection = DaoUtility.createConnection();
-//			statement = connection.prepareStatement(query);
 			statement = connection.prepareCall(query);
 
 			statement.setInt(6, product.getCategoryId());
@@ -36,7 +33,6 @@ public class ProductDao {
 			statement.setDate(5, Date.valueOf(product.getReleasedOn()));
 
 			statement.registerOutParameter(7, Types.INTEGER);
-			// result = statement.executeUpdate();
 			statement.executeUpdate();
 			result = statement.getInt(7);
 		} catch (ClassNotFoundException e) {
@@ -54,7 +50,7 @@ public class ProductDao {
 		return result;
 	}
 
-	public int delete(int id) throws ClassNotFoundException, SQLException, Exception {
+	public int delete(Integer id) throws ClassNotFoundException, SQLException, Exception {
 		Connection connection = null;
 		CallableStatement statement = null;
 		String query = "{call delete_product(?,?)}";
@@ -82,7 +78,7 @@ public class ProductDao {
 		return result;
 	}
 
-	public int update(ProductDTO product) throws ClassNotFoundException, SQLException, Exception {
+	public int update(Integer id, ProductDTO product) throws ClassNotFoundException, SQLException, Exception {
 		Connection connection = null;
 		CallableStatement statement = null;
 		String query = "{call update_product(?,?,?,?,?,?,?)}";
@@ -92,7 +88,7 @@ public class ProductDao {
 			statement = connection.prepareCall(query);
 
 			statement.setInt(6, product.getCategoryId());
-			statement.setInt(1, product.getId());
+			statement.setInt(1,id);
 			statement.setString(2, product.getName());
 			statement.setString(4, product.getDescription());
 			statement.setFloat(3, product.getPrice());
@@ -155,7 +151,7 @@ public class ProductDao {
 		return products;
 	}
 
-	public ProductDTO get(int id) throws SQLException, ClassNotFoundException, Exception {
+	public ProductDTO get(Integer id) throws SQLException, ClassNotFoundException, Exception {
 		Connection connection = null;
 		String query = "select * from products where product_id=?";
 		PreparedStatement statement = null;

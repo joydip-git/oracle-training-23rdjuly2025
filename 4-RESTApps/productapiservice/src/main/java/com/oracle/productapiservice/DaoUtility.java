@@ -38,7 +38,7 @@ public class DaoUtility {
 */
 	private static void loadDriver() throws ClassNotFoundException {
 		//String driver = dbProperties.getProperty("driver");
-		String driver =  ApplicationConfiguration.properties.getProperty("driver");
+		String driver =  ApplicationConfiguration.DB_PROPERTIES.getProperty("driver");
 		if (driver != null && !driver.isBlank()) {
 			Class.forName(driver);
 		}
@@ -47,16 +47,16 @@ public class DaoUtility {
 	public static Connection createConnection() throws SQLException, Exception {
 		Connection connection = null;
 		//if (dbProperties != null) {
-		if(ApplicationConfiguration.properties!=null) {
+		if(ApplicationConfiguration.DB_PROPERTIES!=null) {
 			try {
 				//loadDbConfiguration();
 				loadDriver();
 //				String url = dbProperties.getProperty("url");
 //				String username = dbProperties.getProperty("username");
 //				String password = dbProperties.getProperty("password");
-				String url = ApplicationConfiguration.properties.getProperty("url");
-				String username = ApplicationConfiguration.properties.getProperty("username");
-				String password = ApplicationConfiguration.properties.getProperty("password");
+				String url = ApplicationConfiguration.DB_PROPERTIES.getProperty("url");
+				String username = ApplicationConfiguration.DB_PROPERTIES.getProperty("username");
+				String password = ApplicationConfiguration.DB_PROPERTIES.getProperty("password");
 				if (url != null && username != null && password != null && !url.isBlank() && !username.isBlank()
 						&& !password.isBlank())
 					connection = DriverManager.getConnection(url, username, password);

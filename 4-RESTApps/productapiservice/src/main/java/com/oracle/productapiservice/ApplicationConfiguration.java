@@ -9,7 +9,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 public class ApplicationConfiguration extends ResourceConfig {
 
 	public static final String DB_SETTINGS_PATH = "db.properties";
-	public static Properties properties = new Properties();
+	public static final Properties DB_PROPERTIES = new Properties();
 
 	public ApplicationConfiguration() {
 		this.packages("com.oracle.productapiservice");
@@ -18,9 +18,9 @@ public class ApplicationConfiguration extends ResourceConfig {
 	}
 
 	private void loadConfiguration() {
-		try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(DB_SETTINGS_PATH)) {
+		try (InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(DB_SETTINGS_PATH)) {
 			if (inputStream != null) {
-				properties.load(inputStream);
+				DB_PROPERTIES.load(inputStream);
 			} else {
 				System.err.println("Properties file not found: " + DB_SETTINGS_PATH);
 			}

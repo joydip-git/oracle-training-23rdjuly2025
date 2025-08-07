@@ -34,10 +34,4 @@ public class ProductService {
 			return Response.status(500).entity(e.getMessage()).build();
 		}
 	}
-
-	@GET
-	@Produces(MediaType.TEXT_PLAIN)
-	public String getData() {
-		return new File("").getAbsolutePath();
-	}
 }

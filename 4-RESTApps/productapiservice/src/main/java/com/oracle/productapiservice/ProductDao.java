@@ -24,10 +24,10 @@ public class ProductDao implements DaoContract<ProductDTO, Integer>{
 			statement = connection.prepareCall(query);
 
 			statement.setInt(6, product.getCategoryId());
-			statement.setInt(2, product.getId());
-			statement.setString(1, product.getName());
-			statement.setString(3, product.getDescription());
-			statement.setFloat(4, product.getPrice());
+			statement.setInt(1, product.getId());
+			statement.setString(2, product.getName());
+			statement.setFloat(3, product.getPrice());
+			statement.setString(4, product.getDescription());
 			statement.setDate(5, Date.valueOf(product.getReleasedOn()));
 
 			statement.registerOutParameter(7, Types.INTEGER);

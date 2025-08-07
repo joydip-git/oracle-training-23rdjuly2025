@@ -1,4 +1,4 @@
-package com.oracle.productserviceapi.repository;
+package com.oracle.productapiservice;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -9,8 +9,6 @@ import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.oracle.productserviceapi.models.ProductDTO;
 
 import java.sql.Types;
 

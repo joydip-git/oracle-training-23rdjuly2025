@@ -1,4 +1,4 @@
-package com.oracle.productserviceapi.repository;
+package com.oracle.productapiservice;
 
 import java.sql.SQLException;
 import java.util.List;

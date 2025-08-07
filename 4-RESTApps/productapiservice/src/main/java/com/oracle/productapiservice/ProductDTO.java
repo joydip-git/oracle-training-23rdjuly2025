@@ -1,4 +1,4 @@
-package com.oracle.productserviceapi.models;
+package com.oracle.productapiservice;
 
 import java.time.LocalDate;
 

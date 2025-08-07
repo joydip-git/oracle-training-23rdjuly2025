@@ -1,24 +1,30 @@
-package com.oracle.productserviceapi.repository;
+package com.oracle.productapiservice;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+//import java.io.File;
+//import java.io.FileNotFoundException;
+//import java.io.FileReader;
+//import java.io.InputStream;
+//import java.net.URI;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
+//import java.util.Properties;
 
 public class DaoUtility {
 
+	/*
 	private static Properties dbProperties;
 
 	static {
 		dbProperties = new Properties();
 	}
 
+	
 	private static void loadDbConfiguration() throws FileNotFoundException, Exception {
 		FileReader reader = null;
+		InputStream inputStream = null;
 		try {
-			reader = new FileReader("src//main//resources//db.properties");
+			reader = new FileReader(""); 
 			dbProperties.load(reader);
 		} catch (FileNotFoundException e) {
 			throw e;
@@ -29,9 +35,10 @@ public class DaoUtility {
 				reader.close();
 		}
 	}
-
+*/
 	private static void loadDriver() throws ClassNotFoundException {
-		String driver = dbProperties.getProperty("driver");
+		//String driver = dbProperties.getProperty("driver");
+		String driver =  ApplicationConfiguration.properties.getProperty("driver");
 		if (driver != null && !driver.isBlank()) {
 			Class.forName(driver);
 		}
@@ -39,13 +46,17 @@ public class DaoUtility {
 
 	public static Connection createConnection() throws SQLException, Exception {
 		Connection connection = null;
-		if (dbProperties != null) {
+		//if (dbProperties != null) {
+		if(ApplicationConfiguration.properties!=null) {
 			try {
-				loadDbConfiguration();
+				//loadDbConfiguration();
 				loadDriver();
-				String url = dbProperties.getProperty("url");
-				String username = dbProperties.getProperty("username");
-				String password = dbProperties.getProperty("password");
+//				String url = dbProperties.getProperty("url");
+//				String username = dbProperties.getProperty("username");
+//				String password = dbProperties.getProperty("password");
+				String url = ApplicationConfiguration.properties.getProperty("url");
+				String username = ApplicationConfiguration.properties.getProperty("username");
+				String password = ApplicationConfiguration.properties.getProperty("password");
 				if (url != null && username != null && password != null && !url.isBlank() && !username.isBlank()
 						&& !password.isBlank())
 					connection = DriverManager.getConnection(url, username, password);
@@ -72,4 +83,3 @@ public class DaoUtility {
 		}
 	}
 }
-

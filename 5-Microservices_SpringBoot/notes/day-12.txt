@@ -1,0 +1,113 @@
+Microservices:
+	- small and lightweight services
+	- developed and deployed independent of each other
+	- loosely coupled
+	- autonomous
+	- simple scalability
+	- compatible with containers
+	- minimum configuration
+	- less production time
+
+SpringBoot:
+	platform/framework to create/develop stand-alone and production-grade services (spring apps)
+	- goals:
+		- avoid complex XML configuration (less configuration)
+		- targetted for microservices
+		- reduce development time and increase productivity 
+
+creation:
+	a. SpringBoot CLI
+	b. Spring Initialzr
+	c. SpringToolSuite (STS) with maven
+
+AutoConfiguration:
+	- feature automatically configures the Spring app based on the dependencies present in the classpath and various property settings (in either .yaml file or .properties)
+	- eliminates the need for manual configuration
+
+@SpringBootApplication is a combination of the following annotations:
+	- @EnableAutoConfiguration -> enables auto configuration for the app
+	- @ComponentScan(basePackages = "") -> is uses to instruct spring IoC to scan the specified package and thrir sub-packages for components (classes with annotation like: @Component, @Service, @Repository , @Controller etc.) and register them as beans in the spring application context
+	- @Configuration -> indicate that a class is a source of bean definitions
+Starters:
+	- a set of pre-defined dependency descriptors which we can include in our springboot app
+	- each starter focuses on one area of functionality
+
+	naming: spring-boot-starter[-*]
+
+1. spring-boot-starter:
+	core starter dependencies, including auto-configuration support, logging, yaml etc.
+
+2. spring-boot-starter-parent: includes default configurations for the app. in this case you don't need to specify the version no.
+
+3. spring-boot-starter-web: building web apps, such as RESTful web app using spring mvc. tomcat server is included by default here.
+
+4. spring-boot-starter-tomcat
+5. spring-boot-starter-jetty
+6. spring-boot-starter-data-jpa
+
+code structure:
+	pmsapp
+		PmsappApplication.Java
+
+		models
+			- Product.java
+
+		dao
+			- ProductRepository.java
+
+		service
+			- ProductService.java
+
+		controller
+			- ProductController.java
+
+
+Model-View-Controller
+	architecture to create web app where codes are segregated basesd on functionality 
+
+RESTful API:
+@RestControler - 
+	@Controller: Spring MVC controller class
+	@ResponseBody: tells spring to serialize the return value of the controller's method directly to HTTP response body (in JSON or XML format)
+
+@RequestMapping
+	- method: HTTP method (RequestMethod.GET/PUT/PATCH/DELETE/POST)
+	- value: (path/uri)
+
+alternates:
+@GetMapping(), @PostMapping(), @PutMapping(), @PatchMapping(), @DeleteMapping()
+
+parameters:
+	- path parameters: @PathVariable
+	- request parameters: @RequestParam
+	- request body: @RequestBody
+
+
+http://localhost:8082/welcome/joydip {"yourname":"joydip"}
+	
+common:
+	@Component
+	@Service
+	@ModelAttribute
+
+JPA: Java Persistance API
+		@Repository
+		@Entity
+		@Id
+		@GeneratedValue
+		...........
+
+others:
+	@EnableCaching
+	@EnableAsync
+	etc.
+
+DataSource:
+A factory for connections to the physical data source that this DataSource object represents. An alternative to the DriverManager facility, a DataSource object is the preferred means of getting a connection. An object that implements the DataSource interface will typically be registered with a naming service based on the Java Naming and Directory (JNDI) API.
+
+
+
+
+
+
+

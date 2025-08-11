@@ -44,4 +44,17 @@ JDBC					JDBC API
 
 JPA					JPA
 
+application.properties
+
+spring.datasource.url=
+spring.datasource.driver_class_name=
+
+
+DataSource -> url, driverClassName, username, password
+it is supplement of DriverManager
+
+JdbcTemplate.query("");
+
+
+
 

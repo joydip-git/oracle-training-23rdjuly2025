@@ -12,6 +12,11 @@ import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+
 /**
  * Hello world!
  */
@@ -20,6 +25,10 @@ public class App {
 		SessionFactory factory = null;
 		Session session = null;
 		Transaction transaction = null;
+
+//		EntityManagerFactory factory = null;
+//		EntityManager session = null;
+//		EntityTransaction transaction = null;
 
 		StandardServiceRegistry registry = null;
 		MetadataSources sources = null;
@@ -48,13 +57,16 @@ public class App {
 			factory = metadata.buildSessionFactory();
 
 			// creating a session
-			session = factory.openSession();
+			 session = factory.openSession();
+			//session = factory.createEntityManager();
 
 			// initiating a transaction
-			transaction = session.beginTransaction();
+			 transaction = session.beginTransaction();
+//			transaction = session.getTransaction();
+//			transaction.begin();
 
-			Product newProduct = new Product(106, "one plus 13", "new mobile from one plus", 
-					56000,Date.valueOf(LocalDate.now()), 1);
+			Product newProduct = new Product(107, "one plus 13", "new mobile from one plus", 56000,
+					Date.valueOf(LocalDate.now()), 1);
 			session.persist(newProduct);
 			transaction.commit();
 		} catch (HibernateException e) {

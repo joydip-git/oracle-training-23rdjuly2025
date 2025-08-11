@@ -1,13 +1,14 @@
 package com.oracle.pmsapp.repository;
 
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-
 import com.oracle.pmsapp.entities.ProductDTO;
 
 //@Service
@@ -45,7 +46,10 @@ public class ProductRepository implements DaoContract<ProductDTO, Integer> {
 		List<ProductDTO> products = null;
 
 		try {
-			products = jdbcTemplate.queryForList(query, ProductDTO.class);
+			RowMapper<ProductDTO> rowMapper = (result, rowNo) -> {
+				return convert(result);
+			};
+			products = jdbcTemplate.query(query, rowMapper);
 		} catch (Exception e) {
 			throw e;
 		}
@@ -53,9 +57,28 @@ public class ProductRepository implements DaoContract<ProductDTO, Integer> {
 	}
 
 	@Override
-	public ProductDTO get(Integer id) throws Exception {
-		String query = "select * from products where product_id=?";
-		return jdbcTemplate.queryForObject(query, ProductDTO.class, id);
+	public ProductDTO get(Integer id) throws DataAccessException {
+		try {
+			String query = "select * from products where product_id=?";
+			ProductDTO dto = (ProductDTO) jdbcTemplate.queryForObject(query, (result, rowNo) -> {
+				return convert(result);
+			}, id.intValue());
+			return dto;
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+	private ProductDTO convert(ResultSet result) throws SQLException {
+		ProductDTO product = new ProductDTO();
+		product.setId(result.getInt("product_id"));
+		product.setName(result.getString("product_name"));
+		product.setDescription(result.getString("product_desc"));
+		product.setPrice(result.getFloat("product_price"));
+		product.setReleasedOn(result.getDate("product_released_on").toLocalDate());
+		product.setCategoryId(result.getInt("category_id"));
+		return product;
 	}
 }
 

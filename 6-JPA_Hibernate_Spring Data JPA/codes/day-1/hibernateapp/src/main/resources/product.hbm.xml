@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.oracle.hibernateapp.Product" table="products">
+		<id name="productId" column="product_id">
+			<generator class="assigned"></generator>
+		</id>
+		<property name="productName" column="product_name"
+			not-null="true">
+		</property>
+		<property name="description" column="product_desc"></property>
+		<property name="price" column="product_price"></property>
+		<property name="releasedOn" column="product_released_on"></property>
+		<property name="categoryId" column="category_id"></property>
+	</class>
+</hibernate-mapping>

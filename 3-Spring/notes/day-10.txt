@@ -1,0 +1,67 @@
+component scan annotation:
+---------------------------------
+the entire application (context) is scanned by Spring IoC to check which types (classes) have been marked with @Component annotation. Spring IoC will create beans for them automatically and then use those beans to instantiate, configure and assemble the dependencies and inject them in the dependents
+
+
+RESTful (Representational State Transfer) service:
+-----------------------------------------------------
+
+URL					HTTP METHOD	DATA	class-method	response
+------------------------------------------------------------------------------------------
+http://www.joydip.com/products/all	    GET		NA	getAll		[{},{},...]
+http://www.joydip.com/products/{id}	    GET		id	get(int id)	{}
+http://www.joydip.com/products/add	    POST	product	add(Product p)	{}
+http://www.joydip.com/products/edit/{id}    PUT	   id, product	update(Product p, int id){}
+http://www.joydip.com/products/delete/{id}  DELETE	id	delete(int id)	{}
+
+
+id:100, name:joydip
+
+Web Service (JAX-WS)
+
+REST service (JAX-RS)
+	- J2SE
+	- J2EE (1999) -> 2006 (Java EE) -> Eclipse Foundation (2017) -> Jakarta EE
+	- J2ME
+
+JCP (Java Community Process)
+
+Eclipse Foundation Specification Process (EFSP) is an extension of Eclipse Development Process (EDP)
+
+1. speicification for RESTful services (interfaces) -> JSR (Java Specification Request)
+2. refernce implementation -> Glassfish
+3. tests -> TCKs (Technology Compatibility Kits)
+
+ex: JSR-339 or JAX-RS
+interfaces packages:
+javax.rs.* -> jakarta.rs.*
+
+implementation:
+-----------------
+Jersey
+RestEasy
+Aapche CXF
+SpringBoot
+
+url: http://localhost:8082/productserviceapi/webapi/products
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

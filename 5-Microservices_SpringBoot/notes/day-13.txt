@@ -1,0 +1,44 @@
+JPA -> Java Persistence API
+	standardized way of interacting with source of data and managing the data. It helps you manage the database operations by mapping certain Java Objects to the database table.
+
+Entity: loghtweight and persistent domain object which is mapped to the table in the db and each entity instance corresponds to a row in the table
+
+EntityManager: an interface that can be used to interact with the persistence context. it will provide you the methods to create, delete, update, fetch entities of the application against the context.
+
+PersistnceContext: is the set of the entity instances in which for any persistence entity identiy and there is the unique entity instance.
+
+Creteira API: query API
+
+@Entity("")
+class Product{
+	@Column("product_id")
+	private int productId;
+}
+
+import jakarta.persistence.*;
+
+EntityManagerFactory factory = Persistence.createEntityManagerFactory("bean-name-in-xmlfile");
+
+EM em = factory.createEntityManager();
+EntityTransaction transaction =  em.getTransaction();
+transaction.begin();
+
+Product p = new (.....);
+em.persist(p);
+transaction.commit();
+
+//catch block
+transaction.rollback();
+
+Hibernate -> is a JPA implementation. it provides an OR/M model through which data management becomes easier.
+
+SessionFactory (EM)
+
+Data Access technology			Spring Data
+----------------------------------------------------------
+JDBC					JDBC API
+	- connection, statement etc.	- JdbcTemplate
+
+JPA					JPA
+
+

@@ -106,6 +106,15 @@ DataSource:
 A factory for connections to the physical data source that this DataSource object represents. An alternative to the DriverManager facility, a DataSource object is the preferred means of getting a connection. An object that implements the DataSource interface will typically be registered with a naming service based on the Java Naming and Directory (JNDI) API.
 
 
+queryForList() of JdbcTemplate:
+Execute a query for a result list, given static SQL.
+
+Uses a JDBC Statement, not a PreparedStatement. If you want to execute a static query with a PreparedStatement, use the overloaded queryForList method with null as argument array.
+
+The results will be mapped to a List (one entry for each row) of result objects, each of them matching the specified element type.
+
+
+
 
 
 

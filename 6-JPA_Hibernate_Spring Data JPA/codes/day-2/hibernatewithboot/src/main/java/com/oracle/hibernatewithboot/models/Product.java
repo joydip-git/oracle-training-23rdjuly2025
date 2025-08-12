@@ -2,6 +2,8 @@ package com.oracle.hibernatewithboot.models;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,8 +35,9 @@ public class Product {
 	@Column(name = "category_id")
 	private int categoryId;
 
+	@JsonIgnore
 	@ManyToOne(targetEntity = Category.class, cascade = CascadeType.ALL)
-	@JoinColumn(name = "category_id", nullable = true)
+	@JoinColumn(name = "category_id")
 	private Category category;
 
 	public Product() {

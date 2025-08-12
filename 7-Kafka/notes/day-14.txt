@@ -1,0 +1,28 @@
+event: record or message
+any data that you read from or write to kafka is in form of event
+event has a 
+	- key: "Blog post"
+	- value: "some post about the blog"
+	- timestamp:
+	- metadata (optional)
+
+producers: publish events (messages) to kafka
+consumers: who subscribed to that kind of event and gets the data when the event is fired (message is published in kafka)
+
+topic: events are oraginzed/stored into topics
+
+Kafka API:
+	Admin API: manage and inspect topics, brokers and other kafka objects
+	Producer API: tp publish (write) stream of events to one or more kafka topics
+	Consumer API: to subscribe (read) oe or more kafka topics and to process the stream of events produced to them
+	Stream API: imp;lement stream processing applications and microservices
+	Connect API
+	
+
+JAVA_HOME = C:\PROGRAM FILES\JAVA\JDK-17
+PATH = %JAVA_HOME%\bin
+
+
+
+
+

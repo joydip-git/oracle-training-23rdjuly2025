@@ -1,0 +1,27 @@
+1. change the log files path: (log basics)
+such as: log.dirs=D:/ /ApacheKafka/kafka
+
+note: create the folder if not present
+
+2. add this line: (server basics)
+controller.quorum.voters=1@localhost:9093
+1=> node id, 9093 => listener port no
+
+3. run the command to generate a random uuid
+.\bin\windows\kafka-storage.bat random-uuid
+
+4. persist the generated uuid in some file (I8Zh_2iNQzqMYW8OHTc66w)
+
+5. run the following command to format the server.properties file
+.\bin\windows\kafka-storage.bat format -t <uuid> -c .\config\server.properties --ignore-formatted
+
+6. run the kafka server in kafka kraft mode
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+replace the following code in line 93
+for %%i in ("%BASE_DIR%\libs\*") do (
+	call :concat "%%i"
+)
+by
+call :concat "%BASE_DIR%\libs\*;"
+

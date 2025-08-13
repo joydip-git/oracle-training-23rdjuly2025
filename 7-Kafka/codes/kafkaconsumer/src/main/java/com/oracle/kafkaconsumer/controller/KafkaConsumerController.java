@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.oracle.kafkaconsumer.models.Employee;
 import com.oracle.kafkaconsumer.service.KafkaConsumerService;
 
 @RequestMapping(value = "/consumer")
@@ -16,13 +17,24 @@ public class KafkaConsumerController {
 	@Autowired
 	private KafkaConsumerService consumerService;
 	
-	@GetMapping(value = "/receive")
+	//http://localhost:8082/consumer/get-message
+	@GetMapping(value = "/get-message")
 	public ResponseEntity<String> getPublishedMessage(){
 		try {
 			String message = consumerService.getMessage();
 			return new ResponseEntity<String>(message,HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<String>("no data recevied", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@GetMapping(value = "/get-data")
+	public ResponseEntity<Employee> getPublishedData(){
+		try {
+			Employee data = consumerService.getEmployee();
+			return new ResponseEntity<>(data,HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 }

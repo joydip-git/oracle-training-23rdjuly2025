@@ -23,8 +23,13 @@ public class KafkaTopicConfig {
 		return new KafkaAdmin(configs);
 	}
 
-	@Bean
+	@Bean(name = "MessageTopicBean")
 	NewTopic topic1() {
 		return new NewTopic("message-topic", 1, (short) 1);
+	}
+
+	@Bean(name = "DataTopicBean")
+	NewTopic topic2() {
+		return new NewTopic("emp-data-topic", 1, (short) 1);
 	}
 }

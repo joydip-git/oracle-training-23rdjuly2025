@@ -12,6 +12,7 @@ import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import com.oracle.kafkaconsumer.models.Employee;
@@ -41,12 +42,23 @@ public class KafkaConsumerConfig {
 		Map<String, Object> configProps = new HashMap<>();
 		configProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
 		configProps.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
-		configProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-		configProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+
+		configProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
+		configProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ErrorHandlingDeserializer.class);
+
+		configProps.put(ErrorHandlingDeserializer.VALUE_DESERIALIZER_CLASS, JsonDeserializer.class);
+		configProps.put(ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS, StringDeserializer.class);
+
+		configProps.put(JsonDeserializer.TRUSTED_PACKAGES, "*");
+		configProps.put(JsonDeserializer.VALUE_DEFAULT_TYPE, "com.oracle.kafkaconsumer.models.Employee");
+		configProps.put(JsonDeserializer.USE_TYPE_INFO_HEADERS, false);
+
+		return new DefaultKafkaConsumerFactory<>(configProps);
 		
-		JsonDeserializer<Employee> deserializer = new JsonDeserializer<Employee>();
-		deserializer.addTrustedPackages("com.oracle.kafkaproducer.models.Employee");
-		return new DefaultKafkaConsumerFactory<>(configProps, new StringDeserializer(), deserializer);
+//		JsonDeserializer<Employee> deserializer = new JsonDeserializer<Employee>();
+//		deserializer.addTrustedPackages("*");
+		// return new DefaultKafkaConsumerFactory<>(configProps, new
+		// StringDeserializer(), deserializer);
 	}
 
 	@Bean(name = "StringListenerBean")

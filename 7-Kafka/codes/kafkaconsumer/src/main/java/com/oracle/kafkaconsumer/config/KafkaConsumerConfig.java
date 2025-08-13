@@ -43,7 +43,10 @@ public class KafkaConsumerConfig {
 		configProps.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
 		configProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
 		configProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-		return new DefaultKafkaConsumerFactory<>(configProps);
+		
+		JsonDeserializer<Employee> deserializer = new JsonDeserializer<Employee>();
+		deserializer.addTrustedPackages("com.oracle.kafkaproducer.models.Employee");
+		return new DefaultKafkaConsumerFactory<>(configProps, new StringDeserializer(), deserializer);
 	}
 
 	@Bean(name = "StringListenerBean")

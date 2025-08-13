@@ -1,5 +1,5 @@
 1. change the log files path: (log basics)
-such as: log.dirs=D:/ /ApacheKafka/kafka
+such as: log.dirs=D:/kafka/logs
 
 note: create the folder if not present
 

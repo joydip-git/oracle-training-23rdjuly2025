@@ -15,7 +15,7 @@ public class KafkaProducerController {
 	@Autowired
 	private KafkaProducerService producerService;
 
-	//http://loclahost:8081/send?message=HelloKafka
+	//http://localhost:8081/send?message=HelloKafka
 	@GetMapping("/send")
 	public ResponseEntity<String> publishMessage(@RequestParam String message){
 		try {

@@ -1,0 +1,14 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "target": "es5",
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

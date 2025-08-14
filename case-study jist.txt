@@ -71,6 +71,66 @@
 			- passenger can change/select the anicliary service(s)
 			- passenger can change/select the meal(s) and meal-preference
 			- passenger can change/select the in-flight shopping item(s)
+
+
+flight_service_types (pk)
+	service_type_id
+	service_type_name
+
+meal_types
+	meal_type_id (pk)
+	meal_type_name
+	
+
+flight_services
+	service_id (pk)
+	service_name
+	service_price
+	service_type_id (fk)
+	meal_type_id (fk, nullable)
+
+flight_models
+	flight_model_id (pk)
+	flight_model_name
+	flight_capacity
+	row_nos
+	seats_per_row
+	
+flights
+	flight_id (pk)
+	flight_model_id (pk)
+	flight_origin
+	flight_destination
+	flight_departure_time
+	flight_arrival_time
+
+passengers
+	passenger_id (pk)
+	passenger_name
+	passenger_dob
+	passenger_passport
+	passenger_email
+	passenger_phone
+
+users
+	user_id (pk)
+	user_name
+	user_password
+
+passenger_flight
+	entry_id (pk)
+	passenger_id (fk - passengers)
+	flight_id (fk - flights)
+	seat_no
+	wheelchair
+	with_infant
+	special_meal
+
+passenger_flight_services
+	passenger_id (fk - passengers)
+	service_id (fk-services)
+
+
 			
 			
 

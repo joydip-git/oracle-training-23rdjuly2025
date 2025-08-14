@@ -1,0 +1,146 @@
+web server
+	app dev server: live server, lite-server, webpack dev server etc.
+	production server: tomcat, IIS, NGINX, Vercel etc.
+
+
+.html,.htm,.jsp,.asp,.php. xyz etc...
+
+handlers
+
+extension	module
+-----------------------------
+.htm		handler
+.html		handler
+.asp		isapi
+.jsp		servlet
+
+chrome: V8
+safari: JS Core (Indigo)
+firefox: spidermonkey
+edge: chromekit
+opera: chromium
+
+Ryan Dahl
+
+fs
+readFile, writeFile
+
+http
+createServer
+
+ECMA
+	2014, 2015
+
+
+TS ->
+	a. strict typification
+	b. static type checking
+	c. offers many features which are even not published by ECMA
+
+JavaScript:
+---------------------
+data types: String, Boolean, number, object
+undefined, null, nan, infinity
+
+var/let/const
+
+TypeScript:
+---------------
+any, optional, unknown etc.
+
+
+
+TS -> JS : TypeScript Compiler (TSC)
+
+installing package:
+development or complete dependency
+----------------------------
+a. global
+	npm i typescript --location=global
+	C:\Users\<user-name>\AppData\Roaming\npm
+		node_modules
+		tsc
+
+b. app (local) installation
+	npm i typescript [-D]
+
+	app>node_modules
+		.bin (executables)
+			tsc
+		typescript
+
+tsconfig.json
+
+JS (ES6+) => JS (<ES6)
+compiler: babel
+
+modules in JS:
+--------------------------
+
+module formats:
+------------------------
+
+a. Common JS format (default for Node JS)
+to export:
+	module.exports ={prop1:member1, prop2:member2,...}
+
+to import:
+	const obj = require('rel-path-of-module')
+
+
+b. AMD (asynchronous module definition) format
+define('',[],function(){
+	function add(...){}
+	exports.addFn = add;
+})
+
+
+C. UMD (universal module definition) format
+require('',[],function(){
+	function add(...){}
+	exports.addFn = add;
+})
+
+
+d. ES6 module format
+
+export
+import {} from ''
+
+
+header
+
+function Header(){return element;}
+
+<Header />
+
+component - template/design/view + code + styles
+
+function useState<T>(initialData:T){
+	let data = initialData;
+	function update<T>(newData:T){
+		data = newData;
+	}
+	return [data,update]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

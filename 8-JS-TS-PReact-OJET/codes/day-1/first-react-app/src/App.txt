@@ -1,0 +1,21 @@
+//import { createElement } from 'react'
+import './App.css'
+
+function App() {
+  const message = 'Welcome to React JS'
+  const sentence = 'React JS is a front-end UI development technique/library'
+  // const para = createElement('p', { id: 'mainPara' }, 'React JS is a front-end UI development technique/libray');
+  // const header = createElement('h1', { id: 'mainHeader', className: 'App' }, 'Welcome to React JS');
+  // const div = createElement('div', { id: 'mainDiv' }, [header, para]);
+  const div = (
+    <div id='mainDiv'>
+      <h1 id='mainHeader'></h1>
+      <p id='mainPara'>
+        {sentence}
+      </p>
+    </div>
+  )
+  return div;
+}
+
+export default App

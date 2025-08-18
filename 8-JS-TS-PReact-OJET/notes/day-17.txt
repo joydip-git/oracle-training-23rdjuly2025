@@ -1,0 +1,47 @@
+list of products
+
+src: (folder)
+	models: (folder)
+		[product.ts] (file)
+		create a product model with the necessary attributes (include imageUrl attribute) 
+
+	data: (folder)
+		[products.ts]:
+		create an array of sample product type objects 
+		add them into an array
+
+	components: (folder)
+		product-list (folder)
+			[ProductList.tsx + ProductList.css]
+			in a component display the list of those sample products from the array
+			(image, name, price)
+
+class or interface or type
+
+class Person{
+	id: number;
+	name: string;
+	salary: number;
+
+	constructor(id: number, name: string, salary: number){
+		this.name = name;
+		this.id = id;
+		this.salary = salary;
+	}
+}
+
+interface Person{
+	id: number;
+	name: string;
+	salary: number;
+}
+
+type Person = {
+	id: number,
+	name: string,
+	salary: number
+}
+
+const people: Person[] = [];
+
+https://jsonplaceholder.typicode.com/posts

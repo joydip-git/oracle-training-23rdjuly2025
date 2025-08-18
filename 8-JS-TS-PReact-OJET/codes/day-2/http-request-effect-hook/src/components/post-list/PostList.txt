@@ -1,0 +1,67 @@
+import type { AxiosResponse } from "axios"
+import { getPosts } from "../../services/postservice"
+import type { Post } from "../../models/post"
+import { useState } from "react"
+
+const PostList = () => {
+    const [posts, setPosts] = useState<Post[]>([])
+    const [isLoadingOver, setIsLoadingOver] = useState(false)
+    const [errInfo, setErrorInfo] = useState('')
+
+    const fetchPosts = () => {
+        const dataPromise: Promise<AxiosResponse<Post[]>> = getPosts()
+        dataPromise
+            .then(
+                (response: AxiosResponse<Post[]>) => {
+                    if (response.status === 200) {
+                        setPosts(response.data.slice(0, 10))
+                        setIsLoadingOver(true)
+                        setErrorInfo('')
+                    } else {
+                        setPosts([])
+                        setIsLoadingOver(true)
+                        setErrorInfo('did not get posts')
+                    }
+                }
+            )
+            .catch(
+                (e) => {
+                    setPosts([])
+                    setIsLoadingOver(true)
+                    setErrorInfo('did not get posts beacause ' + e.message)
+                }
+            )
+    }
+
+    let design;
+    if (!isLoadingOver) {
+        design = <span>Loading...please wait</span>;
+    } else if (errInfo !== '') {
+        design = <span>{errInfo}</span>
+    } else if (posts.length === 0) {
+        design = <span>no posts found</span>
+    } else {
+        design = (
+            <ul>
+                {
+                    posts.map(
+                        (p) => {
+                            return <li>{p.title}</li>
+                        }
+                    )
+                }
+            </ul>
+        )
+    }
+    return (
+        <div>
+            <button type="button" onClick={fetchPosts}>Load Data</button>
+            <br />
+            {
+                design
+            }
+        </div>
+    )
+}
+
+export default PostList

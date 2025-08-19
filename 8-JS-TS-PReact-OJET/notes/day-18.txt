@@ -1,0 +1,14 @@
+context
+redux
+
+	
+passing data from one component to another
+
+1. immediate nested components
+2. deeply nested components
+	a. context [deeply nested component in a tree]
+	b. application-wide state management [ any component can share data]
+	c. rxjs
+		- observable
+		- observer
+		- map, of, reduce, filter etc.

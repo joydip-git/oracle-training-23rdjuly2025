@@ -1,0 +1,19 @@
+{
+  "name": "rxjs-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "compile-w": "tsc -w",
+    "start": "node ./dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "rxjs": "^7.8.2"
+  }
+}

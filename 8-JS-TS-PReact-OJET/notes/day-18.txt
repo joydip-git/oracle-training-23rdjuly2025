@@ -12,3 +12,24 @@ passing data from one component to another
 		- observable
 		- observer
 		- map, of, reduce, filter etc.
+
+OJET
+	- Oracle JavaScript Extension Toolkit
+
+	- MVVM (Model-View-ViewModel) - KnockOut JS, Angular
+	- VDOM (Virtual DOM) - VDOM, Preact (React)
+
+OJET CLI installation:
+npm install --location=global @oracle/ojet-cli
+
+crate web app using VDOM:
+ojet create <app-name> --template=basic --vdom
+
+
+
+
+
+
+
+
+

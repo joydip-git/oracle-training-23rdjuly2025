@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_2.xsd"
+    version="3.2">
+
+    <persistence-unit name="DbPersistenceContext" transaction-type="JTA">
+        <jta-data-source>ds1</jta-data-source>
+        <class>com.oracle.helidon.pmsapp.entities.Product</class>
+        <class>com.oracle.helidon.pmsapp.entities.Category</class>
+        <properties>
+            <property name="hibernate.column_ordering_strategy" value="legacy" />
+            <property name="jakarta.persistence.sql-load-script-source"
+                value="META-INF/init_script.sql" />
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+        </properties>
+    </persistence-unit>
+</persistence>

@@ -1,0 +1,26 @@
+# version: "3.8"
+volumes:
+  mongodata:
+  # feedbackvolume:
+
+services:
+  mongoserver:
+    container_name: mongoserver
+    image: "mongo"
+    volumes:
+      - mongodata:/data/db
+  favapp:
+    container_name: favapp
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      # - feedbackvolume:/app/feedback
+    #  environment:
+    #   - PORT:3000
+    env_file:
+      - ./.env
+    depends_on:
+      - mongoserver

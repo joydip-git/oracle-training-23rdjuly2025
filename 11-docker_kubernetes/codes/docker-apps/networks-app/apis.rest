@@ -4,8 +4,24 @@ Content-Type: application/json
 {
     "type":"movie",
     "name":"A New Hope",
-    "url":"https://swapi.dev/api/films/1/"
+    "url":"https://swapi.info/api/films/1/"
+}
+
+###
+POST http://localhost:3000/favorites
+Content-Type: application/json
+
+{
+    "type":"character",
+    "name":"Luke Skywalker",
+    "url":"https://swapi.info/api/people/1"
 }
 
 ###
 GET http://localhost:3000/favorites
+
+###
+GET http://localhost:3000/movies
+
+###
+GET http://localhost:3000/people

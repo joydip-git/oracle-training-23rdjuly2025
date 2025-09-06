@@ -1,33 +1,33 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const axios = require('axios').default;
+const express = require("express");
+const bodyParser = require("body-parser");
+const axios = require("axios").default;
 const mongoose = require('mongoose');
 
-const Favorite = require('./models/favorite');
+const Favorite = require("./models/favorite");
 
 const app = express();
 
 app.use(bodyParser.json());
 
-app.get('/favorites', async (req, res) => {
+app.get("/favorites", async (req, res) => {
   const favorites = await Favorite.find();
   res.status(200).json({
     favorites: favorites,
   });
 });
 
-app.post('/favorites', async (req, res) => {
+app.post("/favorites", async (req, res) => {
   const favName = req.body.name;
   const favType = req.body.type;
   const favUrl = req.body.url;
 
   try {
-    if (favType !== 'movie' && favType !== 'character') {
+    if (favType !== "movie" && favType !== "character") {
       throw new Error('"type" should be "movie" or "character"!');
     }
     const existingFav = await Favorite.findOne({ name: favName });
     if (existingFav) {
-      throw new Error('Favorite exists already!');
+      throw new Error("Favorite exists already!");
     }
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -43,115 +43,47 @@ app.post('/favorites', async (req, res) => {
     await favorite.save();
     res
       .status(201)
-      .json({ message: 'Favorite saved!', favorite: favorite.toObject() });
+      .json({ message: "Favorite saved!", favorite: favorite.toObject() });
   } catch (error) {
-    res.status(500).json({ message: 'Something went wrong.' });
+    res.status(500).json({ message: "Something went wrong." });
   }
 });
 
-app.get('/movies', async (req, res) => {
+app.get("/movies", async (req, res) => {
   try {
-    const response = await axios.get('https://swapi.dev/api/films');
+    const response = await axios.get("https://swapi.info/api/films");
     res.status(200).json({ movies: response.data });
   } catch (error) {
-    res.status(500).json({ message: 'Something went wrong.' });
+    res.status(500).json({ message: "Something went wrong." });
   }
 });
 
-app.get('/people', async (req, res) => {
+app.get("/people", async (req, res) => {
   try {
-    const response = await axios.get('https://swapi.dev/api/people');
+    const response = await axios.get("https://swapi.info/api/people");
     res.status(200).json({ people: response.data });
   } catch (error) {
-    res.status(500).json({ message: 'Something went wrong.' });
-  }
-});
-// app.listen(3000, () => console.log('server is running on port 3000'))
-
-const express = require('express');
-const bodyParser = require('body-parser');
-const axios = require('axios').default;
-const mongoose = require('mongoose');
-
-const Favorite = require('./models/favorite');
-
-const app = express();
-
-app.use(bodyParser.json());
-
-app.get('/favorites', async (req, res) => {
-  const favorites = await Favorite.find();
-  res.status(200).json({
-    favorites: favorites,
-  });
-});
-
-app.post('/favorites', async (req, res) => {
-  const favName = req.body.name;
-  const favType = req.body.type;
-  const favUrl = req.body.url;
-
-  try {
-    if (favType !== 'movie' && favType !== 'character') {
-      throw new Error('"type" should be "movie" or "character"!');
-    }
-    const existingFav = await Favorite.findOne({ name: favName });
-    if (existingFav) {
-      throw new Error('Favorite exists already!');
-    }
-  } catch (error) {
-    return res.status(500).json({ message: error.message });
-  }
-
-  const favorite = new Favorite({
-    name: favName,
-    type: favType,
-    url: favUrl,
-  });
-
-  try {
-    await favorite.save();
-    res
-      .status(201)
-      .json({ message: 'Favorite saved!', favorite: favorite.toObject() });
-  } catch (error) {
-    res.status(500).json({ message: 'Something went wrong.' });
+    res.status(500).json({ message: "Something went wrong." });
   }
 });
 
-app.get('/movies', async (req, res) => {
-  try {
-    const response = await axios.get('https://swapi.dev/api/films');
-    res.status(200).json({ movies: response.data });
-  } catch (error) {
-    res.status(500).json({ message: 'Something went wrong.' });
-  }
-});
-
-app.get('/people', async (req, res) => {
-  try {
-    const response = await axios.get('https://swapi.dev/api/people');
-    res.status(200).json({ people: response.data });
-  } catch (error) {
-    res.status(500).json({ message: 'Something went wrong.' });
-  }
-});
-// app.listen(3000, () => console.log('server is running on port 3000'))
+// app.listen(3000, () => console.log("server is running on port 3000"));
 
 //mongodb on host machine or in another container, but exposes a port 27017
+
 // const CONNECTION_STRING = 'mongodb://localhost:27017/swfavorites';
 
 //mongodb in another container and docker exposes an IP address
-// const CONNECTION_STRING = 'mongodb://172.17.0.2:27017/swfavorites'
+// const CONNECTION_STRING = 'mongodb://172.18.0.2:27017/swfavorites'
 
 //both the mongodb and this container are under the same network and then the DNS name is used (As exposed by docker)
 const CONNECTION_STRING = 'mongodb://mongoserver:27017/swfavorites'
 
-mongoose.connect(CONNECTION_STRING, { useNewUrlParser: true }
-).then(
+mongoose
+  .connect(CONNECTION_STRING, { useNewUrlParser: true }).then(
   (value) => {
     console.log(value.connection);
-    app.listen(3000, () => console.log('server is running on port 3000'))
+    app.listen(3000, () => console.log("server is running on port 3000"));
   },
   (err) => {
     console.log(err);

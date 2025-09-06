@@ -17,7 +17,7 @@ docker desktop/rancher desktop for windows
 1. docker engine (docker d)
 2. docker CLI tool
 3. docker compose tool 
-4. etc.
+4. docker swarm
 
 
 Windows and Mac O/S -> had/s no support for containerization
@@ -96,6 +96,12 @@ remove image: docker rmi restapp:v1
 clean up the build cache:
  docker buildx prune -a
 
+inspect a container details
+---------------------------
+ docker container inspect feedbackcont
+
+container will be removed when stop because you used --rm flag
+docker run -d --rm --name feedbackcont -p 3001:3000 feedbackapp:v1
 
 
 
@@ -114,6 +120,47 @@ IMAGE          CREATED         CREATED BY                                      S
 <missing>      9 days ago      ENV NODE_VERSION=24.7.0                         0B        buildkit.dockerfile.v0
 <missing>      7 weeks ago     CMD ["/bin/sh"]                                 0B        buildkit.dockerfile.v0
 <missing>      7 weeks ago     ADD alpine-minirootfs-3.21.4-x86_64.tar.gz /…   7.82MB    buildkit.dockerfile.v0
+
+Dcoker storage:
+------------------------------------------------------------
+1. docker container read-write thin layer (temporary)
+when docker container is removed the thin layer is also gone along with all data
+just stopping the container does not remove the file system
+
+2. mounts
+	- docker volume/volume
+		its controlled by docker 
+		it will not be present in the host machine file system
+		container removal has no effect on those volumes until and unless you remove the volume 
+		a. manually or 
+		b. while creating and running a docker container using flag --rm. --rm flag if used, when container is stopped it will be removed automatically too. (in case of anonymous volumes)
+
+		types of volumes
+			- named volume
+			- anonymous volumes: created every time you create a new container (even with same image). this also can be shared with another.
+	
+	- bind mount
+	- temporary file system (tmpfs)
+
+/app/feedback => 
+/var/lib/docker/volu...11d319359f5/_data
+
+/app/temp =>
+
+ docker volume remove 630988bc20cbb0e0da7872d37daf0b059c8124f205eb74da5a77ba58f2b639e4
+
+docker volume prune -a
+
+
+docker run -d -v "D:/training/oracle-training-23rdjuly2025/11-docker_kubernetes/codes/docker-apps/data-volumes-app/pages:/app/pages" -v feedbackvolume:/app/feedback -v /app/temp --tmpfs /app/node_modules --name feedbackcont2 -p 3002:3000 feedbackapp:v1
+
+environment variables:
+-------------------------------
+1. via dockerfile
+2. via docker CLI
+	- docker run -d --rm -p 3000:3000 -e PORT=3000 --name feedbackapp feedbackapp:v1 [directly passing env data]
+	- docker run -d --rm -p 3000:3000 --env-file ./.env --name feedbackapp feedbackapp:v1 [passing via env file]
+
 
 
 

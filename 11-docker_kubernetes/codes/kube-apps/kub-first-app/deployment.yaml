@@ -3,18 +3,19 @@ kind: Deployment
 metadata:
   name: kube-message-app
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: kube-message-pod
+  replicas: 1
   template:
     metadata:
       labels:
         app: kube-message-pod
+        # podname: kub-pod
     spec:
       containers:
         - name: kube-message-container
-          image: joydipdocker/message-app:v1
+          image: joydipdocker/kub-app:v1
           resources:
             limits:
               memory: "128Mi"

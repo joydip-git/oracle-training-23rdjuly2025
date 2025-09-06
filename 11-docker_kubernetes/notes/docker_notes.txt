@@ -408,7 +408,7 @@ Note: But make sure you don't commit that separate file as part of your source c
 Networks:
 ------------------------------------
 1. docker container to www => such as request to any website - nothing required
-2. docke container to services running on local machine, use in the code "host.docker.internal:<port>"
+2. docker container to services running on local machine, use in the code "host.docker.internal:<port>"
 
 example:running SQL server in a local machine and connecting to it from an app inside a container
 	a. a SQL Server express running in your system (joydip-pc\sqlexpress)

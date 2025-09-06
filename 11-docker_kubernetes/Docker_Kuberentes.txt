@@ -1,0 +1,122 @@
+Docker:
+	a containerization tool
+	it helps you create an image based on the app, containing the code of the app, the dependencies, the configuration files etc.
+	then based on the image, a container is created to run the app using that image
+
+
+Scaling up:
+	1. purchase more machines and run one copy of your app in every machine.
+	2. use VMs. each and every VM will run one copy of your app.
+
+O/S => Core of the O/S (core services are offered - file management APIs)
+		 -> Kernel
+	at the top of the Kernel other services will be present
+
+docker desktop/rancher desktop for windows
+
+1. docker engine (docker d)
+2. docker CLI tool
+3. docker compose tool 
+4. etc.
+
+
+Windows and Mac O/S -> had/s no support for containerization
+
+Docker is meant for Linux
+
+Windows 10/11 -> Windows Sub-system for Linux
+
+Windows O/S -> Windows O/S kernel + Linux Kernel
+
+Linux Distros => 
+
+VMM -> Hypervisor
+
+Node JS -> should be installed in the target/dev machine
+app dependency -> express js
+
+container -> process (Linux)
+	files and configurations from???
+	share the same config/env between containers???
+
+image: standardized package -> all files, binaries, libraries, configurations to run in a container
+
+1. immutable
+2. layers
+
+
+
+install node js 21 in the container
+create a directory in the target machine restapp
+copy package.json file
+open terminal and move to the restapp dir
+run the command >npm install
+copy the src directory to restapp
+in the terminal run the command >node ./src/index.js
+
+
+container will run the the top of WSL
+every container will have a very thin layer of Linux distro (mainly Debian)
+when your dokcrefile pulls a base image (node, jdk 17, .net8, python...), that pulls the thin O/S layer image of Linux dsitro
+
+# this isn't used for the official published images anymore, but is included for backwards compatibility
+# see https://github.com/docker-library/bashbrew/issues/51
+FROM scratch
+ADD oci/blobs/rootfs.tar.gz /
+CMD ["bash"]
+....
+.....
+docker build -t restapp:v1 .
+docker images
+docker image ls
+docker image history restapp:v1
+
+docker run --name restappcontainer -p 4000:3000 restapp:v1
+note: by default docker container in run in attached mode
+
+dethatched mode: docker run -d --name restappcontainer -p 4000:3000 restapp:v1
+
+docker start restappcontainer
+Note: it starts the container in detatched mode by default
+
+to start in attached mode:
+docker start restappcontainer -a
+
+to show the previous logs of the container
+docker logs restappcontainer
+
+docker logs restappcontainer --follow (for all logs old+future)
+Note: the container will be in attached mode
+
+image is collection of layers about file system instruction
+one layer seats at the top of another
+
+remove image: docker rmi restapp:v1
+
+clean up the build cache:
+ docker buildx prune -a
+
+
+
+
+IMAGE          CREATED         CREATED BY                                      SIZE      COMMENT
+6d532799397d   2 minutes ago   CMD ["node" "./src/index.js"]                   0B        buildkit.dockerfile.v0
+<missing>      2 minutes ago   COPY ./src . # buildkit                         223B      buildkit.dockerfile.v0
+<missing>      2 minutes ago   RUN /bin/sh -c npm install # buildkit           9.39MB    buildkit.dockerfile.v0
+<missing>      2 minutes ago   COPY package.json . # buildkit                  299B      buildkit.dockerfile.v0
+<missing>      2 minutes ago   WORKDIR /restapp                                0B        buildkit.dockerfile.v0
+<missing>      9 days ago      CMD ["node"]                                    0B        buildkit.dockerfile.v0
+<missing>      9 days ago      ENTRYPOINT ["docker-entrypoint.sh"]             0B        buildkit.dockerfile.v0
+<missing>      9 days ago      COPY docker-entrypoint.sh /usr/local/bin/ # …   388B      buildkit.dockerfile.v0
+<missing>      9 days ago      RUN /bin/sh -c apk add --no-cache --virtual …   5.37MB    buildkit.dockerfile.v0
+<missing>      9 days ago      ENV YARN_VERSION=1.22.22                        0B        buildkit.dockerfile.v0
+<missing>      9 days ago      RUN /bin/sh -c addgroup -g 1000 node     && …   154MB     buildkit.dockerfile.v0
+<missing>      9 days ago      ENV NODE_VERSION=24.7.0                         0B        buildkit.dockerfile.v0
+<missing>      7 weeks ago     CMD ["/bin/sh"]                                 0B        buildkit.dockerfile.v0
+<missing>      7 weeks ago     ADD alpine-minirootfs-3.21.4-x86_64.tar.gz /…   7.82MB    buildkit.dockerfile.v0
+
+
+
+
+
+
